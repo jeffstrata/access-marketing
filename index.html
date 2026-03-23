@@ -36,21 +36,126 @@
 
   <!-- Hero Section -->
   <header class="hero" id="hero">
-    <div class="hero-bg-effects">
-      <div class="hero-orb hero-orb-1"></div>
-      <div class="hero-orb hero-orb-2"></div>
-      <div class="hero-orb hero-orb-3"></div>
-      <div class="hero-grid"></div>
+    <div class="hero-bg">
+      <div class="hero-glow"></div>
+      <div class="hero-dots"></div>
+      <div class="hero-slash"></div>
     </div>
-    <div class="container hero-content">
-      <div class="hero-badge">Your Digital Growth Partner</div>
-      <h1>Elevate Your Brand<br><span class="gradient-text">Beyond Ordinary</span></h1>
-      <p class="hero-sub">We build stunning websites, craft bold identities, and create social media strategies that turn followers into customers. For businesses ready to stand out.</p>
-      <div class="hero-actions">
-        <a href="#packages" class="btn btn-primary btn-lg">View Our Packages</a>
-        <a href="#contact" class="btn btn-outline btn-lg">Let's Talk</a>
+
+    <div class="container">
+      <div class="hero-split">
+
+        <!-- Left: Copy -->
+        <div class="hero-left">
+          <div class="hero-eyebrow">
+            <span class="eyebrow-dot"></span>
+            Digital Marketing · Web · Brand · Social
+          </div>
+
+          <h1 class="hero-headline">
+            <span class="hl-1">Look premium.</span>
+            <span class="hl-2">Grow faster.</span>
+            <span class="hl-3">Pay <span class="gradient-text">less.</span></span>
+          </h1>
+
+          <p class="hero-sub">Professional websites, bold brand identities, and social strategies that actually work — built for businesses that want agency quality without the agency price tag.</p>
+
+          <div class="hero-actions">
+            <a href="#packages" class="btn btn-primary btn-lg">View Packages & Pricing</a>
+            <a href="#contact" class="btn btn-outline btn-lg">Book a Free Call</a>
+          </div>
+
+          <div class="hero-proof">
+            <div class="proof-item">
+              <strong>50+</strong>
+              <span>Projects Delivered</span>
+            </div>
+            <div class="proof-divider"></div>
+            <div class="proof-item">
+              <strong>$499</strong>
+              <span>Starting Price</span>
+            </div>
+            <div class="proof-divider"></div>
+            <div class="proof-item">
+              <strong>100%</strong>
+              <span>Custom Work</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Dashboard card -->
+        <div class="hero-right">
+          <div class="hero-cards">
+
+            <!-- Main stats card -->
+            <div class="hc-main">
+              <div class="hc-header">
+                <div class="hc-dots"><span></span><span></span><span></span></div>
+                <span class="hc-label">Brand Performance</span>
+                <span class="hc-live"><span></span>Live</span>
+              </div>
+              <div class="hc-body">
+                <div class="hc-metric">
+                  <div class="hc-metric-info">
+                    <span class="hc-metric-name">Web Traffic</span>
+                    <span class="hc-metric-val">+340%</span>
+                  </div>
+                  <div class="hc-bar"><div class="hc-bar-fill" style="--w:85%"></div></div>
+                </div>
+                <div class="hc-metric">
+                  <div class="hc-metric-info">
+                    <span class="hc-metric-name">Social Reach</span>
+                    <span class="hc-metric-val">+180%</span>
+                  </div>
+                  <div class="hc-bar"><div class="hc-bar-fill" style="--w:62%"></div></div>
+                </div>
+                <div class="hc-metric">
+                  <div class="hc-metric-info">
+                    <span class="hc-metric-name">Lead Volume</span>
+                    <span class="hc-metric-val">+95%</span>
+                  </div>
+                  <div class="hc-bar"><div class="hc-bar-fill" style="--w:48%"></div></div>
+                </div>
+                <div class="hc-sparkline">
+                  <svg viewBox="0 0 200 52" fill="none" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7535C8" stop-opacity="0.5"/>
+                        <stop offset="100%" stop-color="#7535C8" stop-opacity="0"/>
+                      </linearGradient>
+                      <linearGradient id="sparkLine" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#7535C8"/>
+                        <stop offset="100%" stop-color="#00D4FF"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0 46 C25 40, 45 32, 65 26 S105 12, 130 16 S165 6, 200 3" stroke="url(#sparkLine)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <path d="M0 46 C25 40, 45 32, 65 26 S105 12, 130 16 S165 6, 200 3 L200 52 L0 52Z" fill="url(#sparkGrad)"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating: Spots -->
+            <div class="hc-float hc-float-spots">
+              <div class="hc-float-icon">🔥</div>
+              <div>
+                <strong>3 spots left</strong>
+                <span>Accepting new clients</span>
+              </div>
+            </div>
+
+            <!-- Floating: Price -->
+            <div class="hc-float hc-float-price">
+              <span class="hc-price-from">Starting from</span>
+              <span class="hc-price-num">$499</span>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
+
     <div class="hero-scroll">
       <a href="#services" aria-label="Scroll down">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
