@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founding Members | Access Marketing</title>
+  <meta name="description" content="Only 5 spots. Get Access Marketing's full startup package — logo refresh, custom website with SEO, and social media setup — at 20% off as a Founding Member.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== FOUNDING MEMBERS PAGE STYLES ===== */
+
+    /* Hero */
+    .fm-hero {
+      position: relative;
+      padding: 140px 0 80px;
+      overflow: hidden;
+      background: var(--bg-dark);
+    }
+
+    .fm-hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .fm-hero-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(117, 53, 200, 0.2) 0%, transparent 65%);
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .fm-hero-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(117, 53, 200, 0.2) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+      opacity: 0.5;
+    }
+
+    .fm-hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .fm-exclusive-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, rgba(117, 53, 200, 0.2), rgba(0, 212, 255, 0.12));
+      border: 1px solid rgba(117, 53, 200, 0.4);
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      animation: fadeInUp 0.7s ease both;
+    }
+
+    .fm-exclusive-tag span.tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    .fm-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.7s ease 0.1s both;
+    }
+
+    .fm-hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+      animation: fadeInUp 0.7s ease 0.2s both;
+    }
+
+    .fm-spots-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(19, 19, 40, 0.9);
+      border: 1px solid rgba(117, 53, 200, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 14px 24px;
+      margin-bottom: 36px;
+      animation: fadeInUp 0.7s ease 0.25s both;
+    }
+
+    .fm-spots-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .fm-spots-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .fm-spot-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 8px rgba(117, 53, 200, 0.6);
+    }
+
+    .fm-spot-dot.taken {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+    }
+
+    .fm-spots-remaining {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary-light);
+    }
+
+    .fm-hero-cta {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.7s ease 0.35s both;
+    }
+
+    .fm-hero-scroll {
+      text-align: center;
+      margin-top: 56px;
+      animation: bounce 2s infinite;
+    }
+
+    .fm-hero-scroll a {
+      color: var(--text-muted);
+    }
+
+    .fm-hero-scroll a:hover {
+      color: var(--primary-light);
+    }
+
+    /* Discount badge on hero */
+    .fm-discount-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.7s ease 0.05s both;
+    }
+
+    /* ===== WHAT'S INCLUDED ===== */
+    .fm-included {
+      padding: 96px 0;
+      background: var(--bg-section);
+      position: relative;
+    }
+
+    .fm-included::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .fm-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+    }
+
+    .fm-pillar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 36px 28px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fm-pillar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .fm-pillar:hover {
+      border-color: rgba(117, 53, 200, 0.4);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+    }
+
+    .fm-pillar:hover::before {
+      opacity: 1;
+    }
+
+    .fm-pillar-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      margin-bottom: 16px;
+    }
+
+    .fm-pillar-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: rgba(117, 53, 200, 0.15);
+      border: 1px solid rgba(117, 53, 200, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--primary-light);
+    }
+
+    .fm-pillar-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .fm-pillar h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .fm-pillar p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .fm-pillar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .fm-pillar-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .fm-pillar-list li svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ===== PRICING SECTION ===== */
+    .fm-pricing {
+      padding: 96px 0;
+      background: var(--bg-dark);
+    }
+
+    .fm-pricing-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .fm-price-card {
+      background: linear-gradient(145deg, rgba(117, 53, 200, 0.12), rgba(0, 212, 255, 0.06));
+      border: 1px solid rgba(117, 53, 200, 0.4);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-glow);
+      margin-top: 56px;
+    }
+
+    .fm-price-header {
+      padding: 36px 40px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .fm-price-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .fm-price-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .fm-price-right {
+      text-align: right;
+    }
+
+    .fm-original-price {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+
+    .fm-final-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .fm-final-price strong {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .fm-final-price span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .fm-savings-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(0, 212, 255, 0.12);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-top: 6px;
+    }
+
+    .fm-price-body {
+      padding: 36px 40px;
+    }
+
+    .fm-price-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 28px;
+      margin-bottom: 36px;
+    }
+
+    .fm-price-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .fm-price-features li svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--primary-light);
+    }
+
+    .fm-price-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .fm-price-note strong {
+      color: var(--text-secondary);
+    }
+
+    /* ===== FAQ ===== */
+    .fm-faq {
+      padding: 96px 0;
+      background: var(--bg-section);
+      position: relative;
+    }
+
+    .fm-faq::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .fm-faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .fm-faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: var(--transition);
+    }
+
+    .fm-faq-item:hover {
+      border-color: rgba(117, 53, 200, 0.3);
+    }
+
+    .fm-faq-q {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .fm-faq-q::before {
+      content: 'Q';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(117, 53, 200, 0.2);
+      border: 1px solid rgba(117, 53, 200, 0.4);
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--primary-light);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .fm-faq-a {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      padding-left: 38px;
+    }
+
+    /* ===== CTA ===== */
+    .fm-cta {
+      padding: 96px 0;
+      background: var(--bg-dark);
+    }
+
+    .fm-cta-card {
+      background: linear-gradient(135deg, rgba(117, 53, 200, 0.15) 0%, rgba(0, 212, 255, 0.08) 100%);
+      border: 1px solid rgba(117, 53, 200, 0.35);
+      border-radius: var(--radius-xl);
+      padding: 64px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fm-cta-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+    }
+
+    .fm-cta-card h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .fm-cta-card p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    .fm-cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .fm-cta-urgency {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .fm-cta-urgency span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .fm-pillars {
+        grid-template-columns: 1fr;
+      }
+
+      .fm-faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fm-price-features {
+        grid-template-columns: 1fr;
+      }
+
+      .fm-price-header {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .fm-price-right {
+        text-align: left;
+      }
+
+      .fm-final-price {
+        justify-content: flex-start;
+      }
+
+      .fm-cta-card {
+        padding: 40px 24px;
+      }
+
+      .fm-price-body {
+        padding: 28px 24px;
+      }
+
+      .fm-price-header {
+        padding: 28px 24px 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .fm-spots-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img src="accesslogo.png" alt="Access Marketing" class="logo-emblem">
+        <span class="logo-text">Access<span class="logo-accent">Marketing</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#packages">Packages</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="founding-members.html" style="color: var(--accent);">Founding Members</a></li>
+        <li><a href="index.html#why-us">Why Us</a></li>
+        <li><a href="index.html#contact" class="btn btn-nav">Get a Quote</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="fm-hero">
+    <div class="fm-hero-bg">
+      <div class="fm-hero-glow"></div>
+      <div class="fm-hero-dots"></div>
+    </div>
+    <div class="container">
+      <div class="fm-hero-content">
+        <div class="fm-discount-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          20% OFF — Founding Member Exclusive
+        </div>
+
+        <div class="fm-exclusive-tag">
+          <span class="tag-dot"></span>
+          Limited to 5 Local Businesses
+        </div>
+
+        <h1>Your Brand, Built Right.<br><span class="gradient-text">For Less Than You Think.</span></h1>
+
+        <p class="fm-hero-sub">Get our complete startup package — professional logo refresh, a custom SEO-ready website, and a full social media setup with a personalized strategy — all for <strong>20% off</strong> as one of our Founding Members.</p>
+
+        <div class="fm-spots-bar">
+          <span class="fm-spots-label">Spots available:</span>
+          <div class="fm-spots-dots">
+            <div class="fm-spot-dot"></div>
+            <div class="fm-spot-dot"></div>
+            <div class="fm-spot-dot"></div>
+            <div class="fm-spot-dot taken"></div>
+            <div class="fm-spot-dot taken"></div>
+          </div>
+          <span class="fm-spots-remaining">3 of 5 remaining</span>
+        </div>
+
+        <div class="fm-hero-cta">
+          <a href="#fm-pricing" class="btn btn-primary btn-lg">See the Offer</a>
+          <a href="index.html#contact" class="btn btn-outline btn-lg">Claim Your Spot</a>
+        </div>
+
+        <div class="fm-hero-scroll">
+          <a href="#fm-included" aria-label="Scroll down">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- What's Included -->
+  <section class="fm-included" id="fm-included">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">The Package</span>
+        <h2>Everything You Need to <span class="gradient-text">Launch Strong</span></h2>
+        <p>The Founding Member package bundles three core services into one discounted offer — built for local businesses starting from scratch or levelling up their brand.</p>
+      </div>
+
+      <div class="fm-pillars">
+        <!-- Pillar 1: Logo Refresh -->
+        <div class="fm-pillar" data-aos>
+          <div class="fm-pillar-num">01 / Logo</div>
+          <div class="fm-pillar-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 4L6 14v20l18 10 18-10V14L24 4z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M6 14l18 10 18-10" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M24 44V24" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <h3>Logo Refresh</h3>
+          <p>A sharp, modern logo that represents your brand with confidence — built to look great everywhere from your website to your van wrap.</p>
+          <ul class="fm-pillar-list">
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Custom design tailored to your business
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Multiple revisions until it's right
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Full file package (PNG, SVG, PDF)
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Brand colour palette & font guide
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2: Website + SEO -->
+        <div class="fm-pillar" data-aos>
+          <div class="fm-pillar-num">02 / Website</div>
+          <div class="fm-pillar-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="8" width="40" height="28" rx="3" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M4 16h40" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="10" cy="12" r="1.5" fill="currentColor"/>
+              <circle cx="15" cy="12" r="1.5" fill="currentColor"/>
+              <circle cx="20" cy="12" r="1.5" fill="currentColor"/>
+              <path d="M18 26l-4 4 4 4M30 26l4 4-4 4M22 34l4-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 40h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M24 36v4" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <h3>Website Creation & SEO</h3>
+          <p>A professionally designed, fast-loading website built to rank on Google and turn visitors into paying customers.</p>
+          <ul class="fm-pillar-list">
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Custom-designed, mobile-responsive site
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              On-page SEO setup & meta optimization
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Fast load speed & clean code
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Contact forms & lead capture
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3: Social Media Setup -->
+        <div class="fm-pillar" data-aos>
+          <div class="fm-pillar-num">03 / Social</div>
+          <div class="fm-pillar-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2.5"/>
+              <rect x="26" y="6" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2.5"/>
+              <rect x="6" y="26" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2.5"/>
+              <rect x="26" y="26" width="16" height="16" rx="8" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <h3>Social Media Setup & Strategy</h3>
+          <p>We'll get your social accounts looking polished and hand you a personalized content schedule and strategy that's ready to execute from day one.</p>
+          <ul class="fm-pillar-list">
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Profile setup & brand-consistent design
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Personalized posting schedule
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Content strategy tailored to your audience
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Hashtag, bio & highlight optimization
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="fm-pricing" id="fm-pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Founding Member Pricing</span>
+        <h2>One Package. <span class="gradient-text">One Price.</span></h2>
+        <p>Everything bundled together at a 20% discount — exclusively for the first 5 local businesses who claim a spot.</p>
+      </div>
+
+      <div class="fm-pricing-inner">
+        <div class="fm-price-card" data-aos>
+          <div class="fm-price-header">
+            <div>
+              <div class="popular-badge" style="position:static;transform:none;margin-bottom:12px;display:inline-block;">Founding Member Exclusive</div>
+              <div class="fm-price-title">Startup Package</div>
+              <div class="fm-price-subtitle">Logo Refresh + Website + Social Media Setup</div>
+            </div>
+            <div class="fm-price-right">
+              <div class="fm-original-price">$2,499 regular price</div>
+              <div class="fm-final-price">
+                <strong>$1,999</strong>
+                <span>one-time</span>
+              </div>
+              <div class="fm-savings-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                You save $500
+              </div>
+            </div>
+          </div>
+          <div class="fm-price-body">
+            <ul class="fm-price-features">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                Custom logo design
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                Full brand colour & font guide
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                Custom website design & build
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                On-page SEO setup
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                Social media account setup
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                Personalized content schedule
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                Social media strategy document
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                Priority onboarding support
+              </li>
+            </ul>
+
+            <div class="fm-price-note">
+              <strong>Local businesses only.</strong> This offer is designed for companies in our area who want to build a professional brand presence from the ground up. Reach out to confirm availability for your spot.
+            </div>
+
+            <a href="index.html#contact" class="btn btn-primary btn-block btn-lg">Claim a Founding Member Spot →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="fm-faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Questions</span>
+        <h2>Good to <span class="gradient-text">Know</span></h2>
+      </div>
+
+      <div class="fm-faq-grid">
+        <div class="fm-faq-item" data-aos>
+          <div class="fm-faq-q">What does "founding member" mean exactly?</div>
+          <div class="fm-faq-a">We're limiting this offer to just 5 local businesses — the first 5 to sign on get the full startup package at 20% off our standard rates. Once the 5 spots are filled, this pricing is gone.</div>
+        </div>
+        <div class="fm-faq-item" data-aos>
+          <div class="fm-faq-q">Is this a subscription or a one-time payment?</div>
+          <div class="fm-faq-a">This is a one-time investment. You're paying once for the logo, the website build, and the social media setup and strategy — not a recurring monthly fee.</div>
+        </div>
+        <div class="fm-faq-item" data-aos>
+          <div class="fm-faq-q">How long does the whole project take?</div>
+          <div class="fm-faq-a">Typically 2–4 weeks from kickoff to delivery, depending on how quickly feedback is provided. We keep you in the loop throughout the entire process.</div>
+        </div>
+        <div class="fm-faq-item" data-aos>
+          <div class="fm-faq-q">Do I own everything when it's done?</div>
+          <div class="fm-faq-a">100%. You own the logo files, website, and all strategy documents. We hand everything over at the end — no lock-in, no strings attached.</div>
+        </div>
+        <div class="fm-faq-item" data-aos>
+          <div class="fm-faq-q">Can I add ongoing social media management after?</div>
+          <div class="fm-faq-a">Absolutely. Many clients start with the startup package and then move into one of our monthly social media management packages. We'll make it seamless.</div>
+        </div>
+        <div class="fm-faq-item" data-aos>
+          <div class="fm-faq-q">What if I already have a logo or website?</div>
+          <div class="fm-faq-a">No problem — we can swap out any pillar for something more relevant to you. Reach out and we'll put together a custom version of the package that makes sense for where you're at.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="fm-cta">
+    <div class="container">
+      <div class="fm-cta-card" data-aos>
+        <div class="fm-exclusive-tag" style="margin-bottom:20px;">
+          <span class="tag-dot"></span>
+          3 Spots Remaining
+        </div>
+        <h2>Don't Miss Your Spot.</h2>
+        <p>This offer won't last — and it won't come back at this price. Reach out now to lock in your 20% founding member discount before the remaining spots are gone.</p>
+        <div class="fm-cta-actions">
+          <a href="index.html#contact" class="btn btn-primary btn-lg">Claim Your Spot Now</a>
+          <a href="index.html#packages" class="btn btn-outline btn-lg">View All Services</a>
+        </div>
+        <div class="fm-cta-urgency">
+          <span></span>
+          Limited to local businesses · 5 spots total · 20% off
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-link">
+            <img src="accesslogo.png" alt="Access Marketing" class="footer-logo-img">
+          </a>
+          <p>Your digital growth partner. We build brands that stand out and strategies that deliver results.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="index.html#services">Website Development</a></li>
+            <li><a href="index.html#services">Logo Design</a></li>
+            <li><a href="index.html#services">Social Media Strategy</a></li>
+            <li><a href="index.html#services">Digital Marketing</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#packages">Packages</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="founding-members.html">Founding Members</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Access Marketing. All rights reserved.</p>
+        <p>Helping businesses grow with bold branding, stunning websites & strategic marketing.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      }
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-aos]').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
