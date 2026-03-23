@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kru Academy - Property Management Resource Center</title>
+  <meta name="description" content="Master property management with Kru Academy. Free and premium courses, certifications, and expert-led training powered by Kru.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --primary:#3C595D;--primary-light:#64A5AD;--primary-dark:#233538;
+      --accent:#246AFD;--bg:#FFFFFF;--bg-white:#FFFFFF;--bg-section:#F7F8FA;
+      --dark:#0D0F0F;--dark-2:#1B1B1B;--dark-3:#2A2D2E;
+      --text-dark:#1B1B1B;--text-mid:#6A8A8F;--text-light:#C8C8C8;
+      --border:#E2E8F0;--success:#22C55E;--warning:#F59E0B;--danger:#EF4444;
+      --radius:12px;--radius-sm:8px;--radius-full:9999px;
+      --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 12px rgba(0,0,0,0.03);
+      --shadow-lg:0 4px 24px rgba(0,0,0,0.10);--tr:all .2s ease;
+    }
+    body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text-dark);line-height:1.6;min-height:100vh}
+    a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+    button{font-family:'Jost',sans-serif;cursor:pointer;border:none;outline:none;transition:var(--tr)}
+    input,textarea,select{font-family:'Jost',sans-serif;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;font-size:15px;width:100%;transition:var(--tr);background:var(--bg-white)}
+    input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(60,89,93,0.1)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 28px;border-radius:var(--radius-full);font-weight:700;font-size:15px;transition:var(--tr);letter-spacing:.01em}
+    .btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:var(--shadow)}
+    .btn-accent{background:var(--accent);color:#fff}.btn-accent:hover{background:#1a5ae0;transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}.btn-outline:hover{background:var(--primary);color:#fff}
+    .btn-dark{background:var(--dark-2);color:#fff}.btn-dark:hover{background:var(--dark);transform:translateY(-1px)}
+    .btn-white{background:#fff;color:var(--dark-2)}.btn-white:hover{background:#f0f0f0;transform:translateY(-1px)}
+    .btn-danger{background:var(--danger);color:#fff}.btn-danger:hover{background:#dc2626}
+    .btn-success{background:var(--success);color:#fff}
+    .btn-sm{padding:8px 18px;font-size:13px}.btn-lg{padding:16px 36px;font-size:17px}
+    .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+    /* NAVBAR */
+    .navbar{background:var(--dark);padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700;color:#fff;cursor:pointer}
+    .nav-logo .logo-icon{width:36px;height:36px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px}
+    .nav-logo em{color:var(--primary-light);font-weight:400;font-style:normal}
+    .nav-links{display:flex;align-items:center;gap:2px}
+    .nav-link{padding:8px 18px;border-radius:var(--radius-full);color:rgba(255,255,255,0.75);font-weight:500;font-size:15px;cursor:pointer;transition:var(--tr);background:none}
+    .nav-link:hover,.nav-link.active{background:rgba(255,255,255,0.08);color:#fff}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .notif-btn{position:relative;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:#fff}
+    .notif-btn:hover{background:rgba(255,255,255,0.14)}
+    .notif-badge{position:absolute;top:2px;right:2px;width:18px;height:18px;background:var(--danger);color:#fff;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+    .user-avatar{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;cursor:pointer}
+    .user-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--bg-white);border-radius:var(--radius);box-shadow:var(--shadow-lg);min-width:200px;padding:8px;display:none;z-index:100}
+    .user-dropdown.show{display:block}
+    .user-dropdown button{width:100%;padding:10px 16px;text-align:left;background:none;border:none;border-radius:var(--radius-sm);font-size:14px;color:var(--text-dark);display:flex;align-items:center;gap:10px}
+    .user-dropdown button:hover{background:var(--bg-section)}
+    .mobile-toggle{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:#fff}
+    @media(max-width:768px){.navbar{padding:0 16px}.nav-links{display:none;position:absolute;top:72px;left:0;right:0;background:var(--dark);flex-direction:column;padding:16px;border-bottom:1px solid rgba(255,255,255,0.1)}.nav-links.show{display:flex}.mobile-toggle{display:block}}
+
+    /* LAYOUT */
+    .container{max-width:1200px;margin:0 auto;padding:40px 24px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+    @media(max-width:1024px){.grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+
+    /* SECTION */
+    .section-white{background:#fff;padding:80px 0}
+    .section-light{background:var(--bg-section);padding:80px 0}
+    .section-dark{background:var(--dark);padding:80px 0;color:#fff}
+    .section-title{font-size:36px;font-weight:800;margin-bottom:12px;letter-spacing:-.02em}
+    .section-subtitle{color:var(--text-mid);font-size:17px;max-width:600px;margin:0 auto;line-height:1.6}
+    .section-dark .section-subtitle{color:rgba(255,255,255,0.65)}
+
+    /* CARD */
+    .card{background:var(--bg-white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:var(--tr)}
+    .card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:transparent}.card-body{padding:24px}
+
+    /* HERO */
+    .hero{background:var(--dark);color:#fff;padding:100px 24px 80px;text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-40%;right:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(60,89,93,0.25) 0%,transparent 70%);border-radius:50%}
+    .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(100,165,173,0.12) 0%,transparent 70%);border-radius:50%}
+    .hero h1{font-size:52px;font-weight:800;margin-bottom:20px;position:relative;z-index:1;letter-spacing:-.03em;line-height:1.1}
+    .hero h1 em{color:var(--primary-light);font-style:normal}
+    .hero p{font-size:19px;opacity:.7;max-width:620px;margin:0 auto 36px;position:relative;z-index:1;font-weight:400;line-height:1.6}
+    .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+    @media(max-width:640px){.hero h1{font-size:34px}.hero p{font-size:16px}}
+
+    /* COURSE CARDS */
+    .course-thumb{height:180px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:48px;color:rgba(255,255,255,0.15);position:relative}
+    .badge{padding:4px 12px;border-radius:var(--radius-full);font-size:12px;font-weight:600;color:#fff;display:inline-block}
+    .badge-free{background:var(--success)}.badge-paid{background:var(--accent)}
+    .badge-beginner{background:var(--success)}.badge-intermediate{background:var(--warning)}.badge-advanced{background:var(--danger)}
+    .course-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-mid);margin-top:12px}
+    .course-meta span{display:flex;align-items:center;gap:4px}
+    .price{font-size:22px;font-weight:700;color:var(--primary)}.price.free{color:var(--success)}
+
+    /* PROGRESS */
+    .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin:8px 0}
+    .progress-bar .fill{height:100%;background:var(--primary);border-radius:4px;transition:width .5s ease}
+    .progress-text{font-size:13px;color:var(--text-mid);font-weight:500}
+
+    /* COURSE VIEW */
+    .course-layout{display:grid;grid-template-columns:340px 1fr;gap:0;min-height:calc(100vh - 70px)}
+    @media(max-width:1024px){.course-layout{grid-template-columns:1fr}}
+    .course-sidebar{background:var(--bg-white);border-right:1px solid var(--border);overflow-y:auto;max-height:calc(100vh - 70px);position:sticky;top:70px}
+    @media(max-width:1024px){.course-sidebar{position:static;max-height:none}}
+    .sidebar-header{padding:24px;border-bottom:1px solid var(--border)}
+    .module-group{border-bottom:1px solid var(--border)}
+    .module-title{padding:16px 24px;font-weight:600;font-size:14px;color:var(--primary-dark);background:var(--bg-section);cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+    .module-title:hover{background:#eef2f3}
+    .lesson-item{padding:12px 24px 12px 40px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:var(--tr);border-left:3px solid transparent}
+    .lesson-item:hover{background:var(--bg-section)}
+    .lesson-item.active{background:rgba(60,89,93,0.06);border-left-color:var(--primary);color:var(--primary);font-weight:600}
+    .lesson-item.completed{color:var(--success)}
+    .check-icon{width:18px;height:18px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px}
+    .lesson-item.completed .check-icon{background:var(--success);border-color:var(--success);color:#fff}
+    .duration{margin-left:auto;font-size:12px;color:var(--text-light)}
+    .course-content{padding:32px;overflow-y:auto}
+    @media(max-width:640px){.course-content{padding:16px}}
+    .video-container{position:relative;width:100%;padding-bottom:56.25%;background:#000;border-radius:var(--radius);overflow:hidden;margin-bottom:24px}
+    .video-container iframe,.video-container video{position:absolute;top:0;left:0;width:100%;height:100%}
+    .social-embed{padding:40px;text-align:center;background:var(--dark);border-radius:var(--radius);color:#fff;margin-bottom:24px}
+    .social-embed a{color:#fff;font-size:18px;font-weight:600}
+    .lesson-content-text{background:var(--bg-white);border-radius:var(--radius);padding:32px;margin-bottom:24px;line-height:1.8;box-shadow:var(--shadow)}
+    .lesson-content-text h3{color:var(--primary-dark);margin-bottom:16px}
+    .lesson-content-text ul,.lesson-content-text ol{padding-left:24px;margin:12px 0}
+    .lesson-content-text li{margin:8px 0}
+
+    /* QUIZ */
+    .quiz-header{background:var(--dark);color:#fff;padding:32px;border-radius:var(--radius) var(--radius) 0 0}
+    .quiz-body{background:var(--bg-white);padding:32px;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow)}
+    .q-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--primary);color:#fff;border-radius:50%;font-size:14px;font-weight:600;margin-right:12px;flex-shrink:0}
+    .q-text{font-size:16px;font-weight:600;margin-bottom:16px;display:flex;align-items:flex-start}
+    .answer-option{display:flex;align-items:center;gap:12px;padding:14px 18px;border:2px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px;cursor:pointer;transition:var(--tr);font-size:15px}
+    .answer-option:hover{border-color:var(--primary-light);background:rgba(60,89,93,0.03)}
+    .answer-option.selected{border-color:var(--primary);background:rgba(60,89,93,0.06)}
+    .answer-option.correct{border-color:var(--success);background:rgba(34,197,94,0.08)}
+    .answer-option.incorrect{border-color:var(--danger);background:rgba(239,68,68,0.08)}
+    .answer-radio{width:20px;height:20px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+    .answer-option.selected .answer-radio{border-color:var(--primary)}
+    .answer-option.selected .answer-radio::after{content:'';width:10px;height:10px;background:var(--primary);border-radius:50%}
+    .answer-checkbox{width:20px;height:20px;border:2px solid var(--border);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px}
+    .answer-option.selected .answer-checkbox{border-color:var(--primary);background:var(--primary);color:#fff}
+    .explanation{padding:12px 16px;background:#F0F9FF;border-left:3px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-top:8px;font-size:14px;color:#0369A1}
+
+    /* RESULTS */
+    .results-score{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:42px;font-weight:800}
+    .results-score.passed{background:rgba(34,197,94,0.1);color:var(--success);border:4px solid var(--success)}
+    .results-score.failed{background:rgba(239,68,68,0.1);color:var(--danger);border:4px solid var(--danger)}
+
+    /* CERTIFICATE */
+    .cert-card{background:#fff;border:3px solid var(--primary);border-radius:var(--radius);padding:48px;text-align:center;position:relative;max-width:700px;margin:0 auto}
+    .cert-card::before{content:'';position:absolute;inset:8px;border:1px solid var(--primary-light);border-radius:var(--radius-sm);pointer-events:none}
+
+    /* NOTIFICATIONS */
+    .notif-panel{position:fixed;top:72px;right:0;width:380px;max-height:calc(100vh - 72px);background:var(--bg-white);box-shadow:var(--shadow-lg);z-index:999;overflow-y:auto;border-left:1px solid var(--border);transform:translateX(100%);transition:transform .3s ease}
+    .notif-panel.show{transform:translateX(0)}
+    .notif-panel-header{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg-white)}
+    .notif-item{padding:16px 24px;border-bottom:1px solid var(--border);cursor:pointer;transition:var(--tr)}
+    .notif-item:hover{background:var(--bg-section)}
+    .notif-item.unread{background:rgba(36,106,253,0.04);border-left:3px solid var(--accent)}
+    .notif-item .notif-title{font-weight:600;font-size:14px;margin-bottom:4px}
+    .notif-item .notif-msg{font-size:13px;color:var(--text-mid);line-height:1.4}
+    .notif-item .notif-time{font-size:11px;color:var(--text-light);margin-top:6px}
+
+    /* NOTES */
+    .note-card{background:var(--bg-white);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;border-left:3px solid var(--primary);border:1px solid var(--border);border-left:3px solid var(--primary)}
+
+    /* AUTH */
+    .auth-page{min-height:calc(100vh - 72px);display:flex;align-items:center;justify-content:center;padding:40px 24px;background:var(--dark)}
+    .auth-card{background:var(--bg-white);border-radius:var(--radius);padding:48px 40px;max-width:480px;width:100%;box-shadow:var(--shadow-lg)}
+    .auth-card h2{font-size:28px;margin-bottom:8px;color:var(--primary-dark)}
+    .auth-sub{color:var(--text-mid);margin-bottom:32px;font-size:15px}
+    .auth-divider{text-align:center;color:var(--text-light);font-size:13px;margin:20px 0}
+
+    /* FORMS */
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-weight:600;font-size:14px;margin-bottom:6px;color:var(--text-dark)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:480px){.form-row{grid-template-columns:1fr}}
+
+    /* STAT CARDS */
+    .stat-card{background:var(--bg-white);border-radius:var(--radius);padding:24px;border:1px solid var(--border)}
+    .stat-value{font-size:32px;font-weight:800;color:var(--primary-dark)}
+    .stat-label{font-size:14px;color:var(--text-mid);margin-top:4px}
+
+    /* TABLES */
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse}
+    th{text-align:left;padding:12px 16px;background:var(--bg-section);font-size:13px;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.5px}
+    td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:14px}
+    tr:hover td{background:rgba(60,89,93,0.02)}
+
+    /* TABS */
+    .tabs{display:flex;gap:4px;border-bottom:2px solid var(--border);margin-bottom:24px;overflow-x:auto}
+    .tab{padding:12px 20px;font-weight:500;font-size:14px;color:var(--text-mid);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
+    .tab:hover{color:var(--primary)}.tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+
+    /* TOGGLE */
+    .toggle{position:relative;display:inline-block;width:48px;height:26px}
+    .toggle input{opacity:0;width:0;height:0}
+    .toggle-slider{position:absolute;cursor:pointer;inset:0;background:var(--border);border-radius:26px;transition:var(--tr)}
+    .toggle-slider::before{content:'';position:absolute;width:20px;height:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:var(--tr)}
+    .toggle input:checked+.toggle-slider{background:var(--primary)}
+    .toggle input:checked+.toggle-slider::before{transform:translateX(22px)}
+
+    /* PAYMENT */
+    .payment-summary{background:var(--bg-section);border-radius:var(--radius-sm);padding:20px;margin-bottom:24px}
+    .payment-total{font-size:28px;font-weight:800;color:var(--primary)}
+
+    /* TOAST */
+    .toast-container{position:fixed;top:80px;right:24px;z-index:3000;display:flex;flex-direction:column;gap:8px}
+    .toast{padding:14px 24px;border-radius:var(--radius-sm);color:#fff;font-weight:500;font-size:14px;box-shadow:var(--shadow-lg);animation:slideIn .3s ease;max-width:360px}
+    .toast.success{background:var(--success)}.toast.error{background:var(--danger)}.toast.info{background:var(--accent)}
+    @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+
+    /* FOOTER */
+    .footer{background:var(--dark);color:#fff;padding:60px 24px 24px;margin-top:0;border-top:1px solid rgba(255,255,255,0.06)}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto}
+    @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+    .footer h4{font-size:16px;margin-bottom:16px}
+    .footer p,.footer a{font-size:14px;color:rgba(255,255,255,0.7)}.footer a:hover{color:#fff;text-decoration:none}
+    .footer-links{list-style:none}.footer-links li{margin-bottom:8px}
+    .footer-bottom{text-align:center;padding-top:32px;margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;color:rgba(255,255,255,0.5);max-width:1200px;margin-left:auto;margin-right:auto}
+
+    .loading{display:flex;align-items:center;justify-content:center;padding:60px}
+    .spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .empty-state{text-align:center;padding:60px 24px;color:var(--text-mid)}
+    .empty-state h3{font-size:20px;color:var(--text-dark);margin-bottom:8px}
+
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--text-light);border-radius:3px}
+    [hidden]{display:none!important}
+
+    /* CHATBOT */
+    .chatbot-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s ease}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .chatbot{background:var(--bg-white);border-radius:var(--radius);max-width:520px;width:100%;box-shadow:var(--shadow-lg);overflow:hidden;animation:slideUp .4s ease}
+    @keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .chatbot-header{background:var(--dark);color:#fff;padding:28px 32px;position:relative}
+    .chatbot-header h3{font-size:20px;margin-bottom:4px}.chatbot-header p{font-size:14px;opacity:.85}
+    .chatbot-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.2);border:none;color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+    .chatbot-close:hover{background:rgba(255,255,255,.3)}
+    .chatbot-body{padding:28px 32px}
+    .chatbot-step{animation:fadeIn .3s ease}
+    .chatbot-q{font-size:16px;font-weight:600;color:var(--primary-dark);margin-bottom:20px;line-height:1.5}
+    .chatbot-option{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border:2px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;cursor:pointer;transition:var(--tr)}
+    .chatbot-option:hover{border-color:var(--primary-light);background:rgba(60,89,93,.03);transform:translateX(4px)}
+    .chatbot-option .cb-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+    .chatbot-option .cb-label{font-weight:600;font-size:15px;margin-bottom:2px}
+    .chatbot-option .cb-desc{font-size:13px;color:var(--text-mid);line-height:1.4}
+    .chatbot-result{text-align:center;padding:12px 0}
+    .chatbot-result .cb-emoji{font-size:48px;margin-bottom:16px}
+    .chatbot-result h3{font-size:20px;color:var(--primary-dark);margin-bottom:8px}
+    .chatbot-result p{font-size:14px;color:var(--text-mid);margin-bottom:20px;line-height:1.5}
+    .chatbot-recs{text-align:left;margin-bottom:20px}
+    .chatbot-rec{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg-section);border-radius:var(--radius-sm);margin-bottom:8px;cursor:pointer;transition:var(--tr)}
+    .chatbot-rec:hover{background:rgba(60,89,93,.08);transform:translateX(4px)}
+    .chatbot-rec .rec-icon{font-size:20px}.chatbot-rec .rec-title{font-weight:600;font-size:14px}
+    .chatbot-rec .rec-tag{margin-left:auto;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600}
+
+    /* RESOURCES PAGE */
+    .resource-card{cursor:pointer;transition:var(--tr)}
+    .resource-card:hover{transform:translateY(-4px)}
+    .resource-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
+    .resource-thumb.video{background:var(--dark)}
+    .resource-thumb.blog{background:var(--dark-2)}
+    .resource-thumb.guide{background:var(--dark-3)}
+    .resource-thumb.podcast{background:var(--dark)}
+    .resource-type{position:absolute;top:12px;left:12px;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.5px}
+    .resource-type.video{background:var(--danger)}.resource-type.blog{background:var(--primary)}
+    .resource-type.guide{background:var(--accent)}.resource-type.podcast{background:#e94560}
+    .resource-filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+    .resource-filter{padding:8px 20px;border-radius:var(--radius-full);font-size:14px;font-weight:500;background:var(--bg-white);border:2px solid var(--border);color:var(--text-dark);cursor:pointer;transition:var(--tr)}
+    .resource-filter:hover{border-color:var(--primary-light)}
+    .resource-filter.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+    /* KRU PLATFORM LINK */
+    .nav-kru-link{padding:8px 16px;border-radius:var(--radius-full);font-weight:600;font-size:13px;cursor:pointer;transition:var(--tr);background:var(--primary);color:#fff!important;text-decoration:none!important;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+    .nav-kru-link:hover{background:var(--primary-light);transform:translateY(-1px)}
+
+    /* GET STARTED / PROSPECTIVE PM PAGE */
+    .gs-hero{background:var(--dark);color:#fff;padding:100px 24px 70px;text-align:center;position:relative;overflow:hidden}
+    .gs-hero::before{content:'';position:absolute;top:-40%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(60,89,93,.2) 0%,transparent 70%);border-radius:50%}
+    .gs-hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(100,165,173,.1) 0%,transparent 70%);border-radius:50%}
+    .gs-hero h1{font-size:48px;font-weight:800;margin-bottom:16px;position:relative;z-index:1;line-height:1.1;letter-spacing:-.03em}
+    .gs-hero p{font-size:19px;opacity:.65;max-width:650px;margin:0 auto;position:relative;z-index:1;font-weight:400;line-height:1.6}
+    @media(max-width:640px){.gs-hero h1{font-size:32px}.gs-hero p{font-size:16px}}
+    .gs-step{display:flex;align-items:flex-start;gap:24px;padding:32px;background:var(--bg-white);border-radius:var(--radius);border:1px solid var(--border);transition:var(--tr);margin-bottom:16px}
+    .gs-step:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:transparent}
+    .gs-step-num{width:48px;height:48px;border-radius:50%;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;flex-shrink:0}
+    .gs-step h3{font-size:18px;margin-bottom:6px;color:var(--primary-dark)}
+    .gs-step p{font-size:14px;color:var(--text-mid);line-height:1.6}
+    .gs-checklist{list-style:none;padding:0}
+    .gs-checklist li{padding:14px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px;font-size:15px}
+    .gs-checklist li:last-child{border-bottom:none}
+    .gs-check{width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,.12);color:var(--success);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px}
+    .gs-myth{background:var(--bg-white);border-radius:var(--radius-sm);padding:20px 24px;margin-bottom:12px;border-left:4px solid var(--danger);border:1px solid var(--border);border-left:4px solid var(--danger)}
+    .gs-myth .myth-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;color:var(--danger);margin-bottom:4px}
+    .gs-myth .truth-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;color:var(--success);margin-bottom:4px;margin-top:10px}
+    .gs-myth h4{font-size:15px;margin-bottom:2px}
+    .gs-myth p{font-size:14px;color:var(--text-mid);line-height:1.5}
+  </style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast-container" id="toasts"></div>
+
+<script>
+// ================================================================
+//  Kru Academy — Full Self-Contained LMS (localStorage backend)
+// ================================================================
+const DB = {
+  _get(k){ try{ return JSON.parse(localStorage.getItem('kru_'+k)) || null; }catch{ return null; } },
+  _set(k,v){ localStorage.setItem('kru_'+k, JSON.stringify(v)); },
+  getAll(k){ return this._get(k) || []; },
+  setAll(k,v){ this._set(k,v); },
+  nextId(k){ const n = (this._get(k+'_seq') || 0) + 1; this._set(k+'_seq', n); return n; },
+  insert(k, obj){ const all = this.getAll(k); obj.id = this.nextId(k); all.push(obj); this.setAll(k, all); return obj; },
+  update(k, id, patch){ const all = this.getAll(k); const i = all.findIndex(x=>x.id===id); if(i>=0) Object.assign(all[i], patch); this.setAll(k, all); return all[i]; },
+  remove(k, id){ this.setAll(k, this.getAll(k).filter(x=>x.id!==id)); },
+  find(k, fn){ return this.getAll(k).find(fn); },
+  filter(k, fn){ return this.getAll(k).filter(fn); },
+  count(k, fn){ return fn ? this.filter(k,fn).length : this.getAll(k).length; }
+};
+
+// Seed data on first load
+if(!localStorage.getItem('kru_seeded')){
+  // Admin user
+  DB.insert('users', { first_name:'Kru', last_name:'Admin', email:'admin@kruacademy.ca', phone:'', password:'admin123', role:'admin', email_notif:true, sms_notif:true, push_notif:true, created_at:new Date().toISOString(), last_active:new Date().toISOString() });
+
+  // Courses
+  const c1 = DB.insert('courses', { title:'Property Management Fundamentals', description:'Master the essentials of property management. Learn tenant relations, maintenance coordination, financial tracking, and legal compliance in this comprehensive introductory course.', category:'Fundamentals', difficulty:'beginner', is_free:true, price:0, is_published:true, created_by:1, created_at:new Date().toISOString() });
+  const c2 = DB.insert('courses', { title:'Advanced Maintenance Coordination', description:'Take your maintenance management skills to the next level. Learn advanced scheduling, vendor management, preventive maintenance programs, and cost optimization strategies using the Kru platform.', category:'Maintenance', difficulty:'intermediate', is_free:false, price:49.99, is_published:true, created_by:1, created_at:new Date().toISOString() });
+  const c3 = DB.insert('courses', { title:'Legal Essentials for Property Managers', description:'Navigate the legal landscape of property management with confidence. Covers landlord-tenant law, fair housing, lease agreements, eviction procedures, and liability management across Canadian provinces.', category:'Legal', difficulty:'advanced', is_free:false, price:79.99, is_published:true, created_by:1, created_at:new Date().toISOString() });
+  const c4 = DB.insert('courses', { title:'Getting Started with Kru', description:'Learn how to use the Kru platform to streamline your property maintenance workflow. This free course walks you through setup, submitting requests, managing contractors, and using all Kru features effectively.', category:'Platform', difficulty:'beginner', is_free:true, price:0, is_published:true, created_by:1, created_at:new Date().toISOString() });
+
+  // Modules for Course 1
+  const m1 = DB.insert('modules', { course_id:c1.id, title:'Getting Started with Property Management', description:'An introduction to the world of property management', sort_order:0 });
+  const m2 = DB.insert('modules', { course_id:c1.id, title:'Tenant Relations & Communication', description:'Building strong relationships with your tenants', sort_order:1 });
+  const m3 = DB.insert('modules', { course_id:c1.id, title:'Maintenance & Repairs', description:'Efficient maintenance coordination strategies', sort_order:2 });
+
+  // Module for Course 2
+  const m4 = DB.insert('modules', { course_id:c2.id, title:'Advanced Vendor Management', description:'Building and managing your contractor network', sort_order:0 });
+
+  // Lessons
+  DB.insert('lessons', { module_id:m1.id, title:'Welcome to Property Management', description:'Your journey into property management starts here', content_type:'youtube', youtube_url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', duration:10, sort_order:0, is_free_preview:true });
+  DB.insert('lessons', { module_id:m1.id, title:'Understanding Your Role', description:'Key responsibilities of a property manager', content_type:'text', text_content:'<h3>The Property Manager Role</h3><p>A property manager serves as the bridge between property owners and tenants. Your core responsibilities include:</p><ul><li><strong>Tenant Screening &amp; Selection</strong> — Finding reliable tenants through background checks and interviews</li><li><strong>Rent Collection</strong> — Ensuring timely payments and handling delinquencies</li><li><strong>Maintenance Coordination</strong> — Managing repairs, inspections, and preventive maintenance</li><li><strong>Legal Compliance</strong> — Staying current with landlord-tenant laws and regulations</li><li><strong>Financial Management</strong> — Budgeting, accounting, and financial reporting</li></ul><p>In the following lessons, we will dive deep into each of these areas.</p>', duration:15, sort_order:1, is_free_preview:false });
+  DB.insert('lessons', { module_id:m2.id, title:'Communication Best Practices', description:'How to communicate effectively with tenants', content_type:'youtube', youtube_url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', duration:12, sort_order:0, is_free_preview:false });
+  DB.insert('lessons', { module_id:m2.id, title:'Handling Complaints & Disputes', description:'Professional conflict resolution strategies', content_type:'text', text_content:'<h3>Professional Complaint Handling</h3><p>Every property manager will face tenant complaints. Here is how to handle them professionally:</p><ol><li><strong>Listen Actively</strong> — Let the tenant express their concern fully</li><li><strong>Acknowledge</strong> — Show empathy and understanding</li><li><strong>Document</strong> — Record every complaint in writing</li><li><strong>Act Promptly</strong> — Provide a timeline for resolution</li><li><strong>Follow Up</strong> — Confirm the issue has been resolved</li></ol>', duration:20, sort_order:1, is_free_preview:false });
+  DB.insert('lessons', { module_id:m3.id, title:'Maintenance Workflow with Kru', description:'How to use Kru for efficient maintenance coordination', content_type:'youtube', youtube_url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', duration:15, sort_order:0, is_free_preview:false });
+  DB.insert('lessons', { module_id:m3.id, title:'Follow Kru on Social Media', description:'Stay connected with the Kru community for tips and updates', content_type:'social', social_url:'https://www.instagram.com/mykru.ca/', duration:5, sort_order:1, is_free_preview:false });
+  DB.insert('lessons', { module_id:m4.id, title:'Building Your Contractor Network', description:'Strategies for finding and vetting quality contractors', content_type:'youtube', youtube_url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', duration:18, sort_order:0, is_free_preview:true });
+
+  // Quiz (lesson quiz)
+  const q1 = DB.insert('quizzes', { course_id:c1.id, lesson_id:null, title:'Module 1 Knowledge Check', description:'Test your understanding of property management basics.', quiz_type:'lesson', passing_score:70, time_limit:0, max_attempts:3 });
+  const qq1 = DB.insert('questions', { quiz_id:q1.id, text:'What is the primary role of a property manager?', type:'multiple_choice', explanation:'A property manager serves as the bridge between property owners and tenants.', points:1, sort_order:0 });
+  DB.insert('answers', { question_id:qq1.id, text:'Bridge between owners and tenants', is_correct:true, sort_order:0 });
+  DB.insert('answers', { question_id:qq1.id, text:'Only collecting rent', is_correct:false, sort_order:1 });
+  DB.insert('answers', { question_id:qq1.id, text:'Selling properties', is_correct:false, sort_order:2 });
+  DB.insert('answers', { question_id:qq1.id, text:'Interior design', is_correct:false, sort_order:3 });
+
+  const qq2 = DB.insert('questions', { quiz_id:q1.id, text:'Tenant screening includes background checks.', type:'true_false', explanation:'Yes, thorough tenant screening including background checks is a key responsibility.', points:1, sort_order:1 });
+  DB.insert('answers', { question_id:qq2.id, text:'True', is_correct:true, sort_order:0 });
+  DB.insert('answers', { question_id:qq2.id, text:'False', is_correct:false, sort_order:1 });
+
+  // Final Exam
+  const fe = DB.insert('quizzes', { course_id:c1.id, lesson_id:null, title:'Property Management Fundamentals — Final Exam', description:'Comprehensive exam covering all modules. Score 80% or higher to earn your Kru Academy Certificate.', quiz_type:'final_exam', passing_score:80, time_limit:60, max_attempts:3 });
+
+  const feq1 = DB.insert('questions', { quiz_id:fe.id, text:'Which of the following is NOT a core responsibility of a property manager?', type:'multiple_choice', explanation:'Property managers handle tenant relations, maintenance, finances, and legal compliance — not real estate sales.', points:2, sort_order:0 });
+  DB.insert('answers', { question_id:feq1.id, text:'Selling properties on behalf of owners', is_correct:true, sort_order:0 });
+  DB.insert('answers', { question_id:feq1.id, text:'Collecting rent from tenants', is_correct:false, sort_order:1 });
+  DB.insert('answers', { question_id:feq1.id, text:'Coordinating maintenance requests', is_correct:false, sort_order:2 });
+  DB.insert('answers', { question_id:feq1.id, text:'Ensuring legal compliance', is_correct:false, sort_order:3 });
+
+  const feq2 = DB.insert('questions', { quiz_id:fe.id, text:'What is the first step when handling a tenant complaint?', type:'multiple_choice', explanation:'Active listening allows the tenant to fully express their concern before you respond.', points:2, sort_order:1 });
+  DB.insert('answers', { question_id:feq2.id, text:'Listen actively to the tenant', is_correct:true, sort_order:0 });
+  DB.insert('answers', { question_id:feq2.id, text:'Immediately escalate to the owner', is_correct:false, sort_order:1 });
+  DB.insert('answers', { question_id:feq2.id, text:'Send a written warning', is_correct:false, sort_order:2 });
+  DB.insert('answers', { question_id:feq2.id, text:'Ignore the complaint', is_correct:false, sort_order:3 });
+
+  const feq3 = DB.insert('questions', { quiz_id:fe.id, text:'Every tenant complaint should be documented in writing.', type:'true_false', explanation:'Documentation protects both the property manager and the tenant.', points:2, sort_order:2 });
+  DB.insert('answers', { question_id:feq3.id, text:'True', is_correct:true, sort_order:0 });
+  DB.insert('answers', { question_id:feq3.id, text:'False', is_correct:false, sort_order:1 });
+
+  const feq4 = DB.insert('questions', { quiz_id:fe.id, text:'What platform does Kru provide for maintenance coordination?', type:'multiple_choice', explanation:'Kru provides a mobile-first application for streamlined maintenance requests.', points:2, sort_order:3 });
+  DB.insert('answers', { question_id:feq4.id, text:'A mobile-first application', is_correct:true, sort_order:0 });
+  DB.insert('answers', { question_id:feq4.id, text:'A paper-based system', is_correct:false, sort_order:1 });
+  DB.insert('answers', { question_id:feq4.id, text:'Phone-only support', is_correct:false, sort_order:2 });
+  DB.insert('answers', { question_id:feq4.id, text:'Email-only communication', is_correct:false, sort_order:3 });
+
+  const feq5 = DB.insert('questions', { quiz_id:fe.id, text:'Which of the following are important for successful property management? (Select all that apply)', type:'multi_select', explanation:'All of these except ignoring regulations are critical to successful property management.', points:2, sort_order:4 });
+  DB.insert('answers', { question_id:feq5.id, text:'Clear communication with tenants', is_correct:true, sort_order:0 });
+  DB.insert('answers', { question_id:feq5.id, text:'Timely maintenance responses', is_correct:true, sort_order:1 });
+  DB.insert('answers', { question_id:feq5.id, text:'Proper financial tracking', is_correct:true, sort_order:2 });
+  DB.insert('answers', { question_id:feq5.id, text:'Ignoring local regulations', is_correct:false, sort_order:3 });
+
+  // Free Resources
+  DB.insert('resources', { title:'5 Mistakes New Landlords Make', description:'Avoid the most common pitfalls when starting out as a rental property owner. This quick video covers tenant screening, rent pricing, insurance gaps, and more.', type:'video', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', category:'all', tags:'beginner,landlord', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'How to Screen Tenants Like a Pro', description:'A step-by-step guide to running background checks, verifying income, calling references, and making the right decision on applicants.', type:'blog', content:'<h3>Tenant Screening 101</h3><p>Finding the right tenant is the single most important thing you can do as a property manager. A great tenant pays on time, respects the property, and communicates openly. A bad tenant can cost you thousands in missed rent, legal fees, and repairs.</p><h3>Step 1: Create a Consistent Process</h3><p>Apply the same criteria to every applicant. This protects you legally and ensures fairness. Your checklist should include: credit check, criminal background, employment verification, rental history, and personal references.</p><h3>Step 2: Verify Income</h3><p>A general rule of thumb is that a tenant should earn at least 3x the monthly rent. Request recent pay stubs or a letter from their employer.</p><h3>Step 3: Call Previous Landlords</h3><p>Ask specific questions: Did they pay rent on time? Did they maintain the property? Would you rent to them again? Previous landlords are your best source of truth.</p><h3>Step 4: Trust the Process</h3><p>Even if an applicant seems great in person, never skip the verification steps. Document everything and keep your process consistent.</p>', category:'all', tags:'screening,beginner', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'Maintenance Budgeting for Multi-Unit Properties', description:'Learn how to forecast maintenance costs, build reserve funds, and avoid surprise expenses across your rental portfolio.', type:'video', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', category:'all', tags:'maintenance,finance', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'Understanding the Residential Tenancies Act', description:'A beginner-friendly breakdown of your rights and responsibilities as a landlord under Canadian tenancy law.', type:'guide', content:'<h3>Know Your Legal Obligations</h3><p>Every province in Canada has its own Residential Tenancies Act (RTA) governing the landlord-tenant relationship. While the specifics vary, the core principles are consistent:</p><ul><li><strong>Right to Quiet Enjoyment</strong> — Tenants have the right to reasonable peace in their home. You cannot enter without proper notice (usually 24 hours).</li><li><strong>Maintenance Standards</strong> — Landlords must keep the property in a good state of repair, meeting all health, safety, and housing standards.</li><li><strong>Rent Increases</strong> — Most provinces cap annual rent increases and require written notice (typically 90 days).</li><li><strong>Security Deposits</strong> — Rules around deposits vary by province. Some provinces do not allow them at all.</li><li><strong>Eviction Process</strong> — You cannot simply evict a tenant. There are specific legal grounds and procedures that must be followed.</li></ul><p>Staying informed about your local RTA is essential. Ignorance of the law is not a defense.</p>', category:'all', tags:'legal,beginner', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'How Kru Saves Property Managers 10+ Hours/Week', description:'See how the Kru platform automates maintenance coordination, contractor dispatch, and tenant communication — so you can focus on growing your portfolio.', type:'video', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', category:'all', tags:'kru,platform', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'The PM Playbook: From 1 Unit to 50', description:'Real strategies from property managers who scaled their portfolio. Covers systems, hiring, technology, and mindset shifts at every stage of growth.', type:'blog', content:'<h3>Scaling Your Portfolio</h3><p>Growing from a single rental unit to a portfolio of 50+ properties requires fundamentally different systems at each stage. Here is what changes:</p><h3>1-5 Units: The DIY Phase</h3><p>You can handle most things yourself at this stage. Focus on learning the basics of tenant relations, light maintenance, and bookkeeping. Use spreadsheets and your phone.</p><h3>5-15 Units: The Systems Phase</h3><p>This is where most landlords get stuck. You need to transition from doing everything yourself to building repeatable processes. Use property management software, standardize your lease agreements, and start building a contractor network.</p><h3>15-50 Units: The Team Phase</h3><p>You cannot do this alone. Consider hiring a part-time property manager or virtual assistant. Use platforms like Kru to automate maintenance workflows. Delegate tenant communication and focus on acquisitions and strategy.</p>', category:'all', tags:'scaling,strategy', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'Setting Up Your First Rental Property', description:'A complete walkthrough for first-time landlords — from finding the right property to getting your first tenant moved in.', type:'guide', content:'<h3>Your First Rental Property Checklist</h3><ol><li><strong>Research your market</strong> — Understand average rents, vacancy rates, and tenant demographics in your area.</li><li><strong>Run the numbers</strong> — Calculate mortgage, taxes, insurance, maintenance reserves (budget 1-2% of property value annually), and expected rental income.</li><li><strong>Prepare the property</strong> — Ensure it meets all safety codes. Install smoke detectors, carbon monoxide detectors, and secure all entry points.</li><li><strong>Get insured</strong> — Switch from homeowner to landlord insurance. Consider an umbrella policy for extra liability protection.</li><li><strong>Create a lease agreement</strong> — Use a province-specific template. Cover rent amount, due date, pet policy, maintenance responsibilities, and notice requirements.</li><li><strong>List and market</strong> — Use online platforms, social media, and local signage. Take quality photos and write detailed descriptions.</li><li><strong>Screen tenants thoroughly</strong> — Never skip this step. See our tenant screening guide for details.</li><li><strong>Document everything</strong> — Do a move-in inspection with photos and have the tenant sign off.</li></ol>', category:'all', tags:'beginner,setup', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'Property Management Tech Stack 2025', description:'The best apps and tools that modern property managers are using to automate their workflow, from rent collection to contractor management.', type:'blog', content:'<h3>Essential Tools for Modern PMs</h3><p>Technology has transformed property management. Here are the must-have tools:</p><ul><li><strong>Kru (mykru.ca)</strong> — Maintenance coordination, contractor vetting, and streamlined communication between owners, tenants, and contractors.</li><li><strong>Accounting Software</strong> — Track income, expenses, and generate reports for tax season.</li><li><strong>Tenant Communication</strong> — Centralized messaging prevents things from falling through the cracks.</li><li><strong>Digital Lease Signing</strong> — E-signatures save time and create a clear paper trail.</li><li><strong>Inspection Apps</strong> — Document property condition with timestamped photos and notes.</li></ul>', category:'all', tags:'technology,tools', created_at:new Date().toISOString() });
+
+  localStorage.setItem('kru_seeded', '1');
+}
+
+// Seed resources separately (for users upgrading from v1)
+if(DB.getAll('resources').length === 0){
+  DB.insert('resources', { title:'5 Mistakes New Landlords Make', description:'Avoid the most common pitfalls when starting out as a rental property owner. This quick video covers tenant screening, rent pricing, insurance gaps, and more.', type:'video', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', category:'all', tags:'beginner,landlord', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'How to Screen Tenants Like a Pro', description:'A step-by-step guide to running background checks, verifying income, calling references, and making the right decision on applicants.', type:'blog', content:'<h3>Tenant Screening 101</h3><p>Finding the right tenant is the single most important thing you can do as a property manager. A great tenant pays on time, respects the property, and communicates openly.</p><h3>Step 1: Create a Consistent Process</h3><p>Apply the same criteria to every applicant. Your checklist should include: credit check, criminal background, employment verification, rental history, and personal references.</p><h3>Step 2: Verify Income</h3><p>A general rule is that a tenant should earn at least 3x the monthly rent. Request recent pay stubs or a letter from their employer.</p><h3>Step 3: Call Previous Landlords</h3><p>Ask: Did they pay on time? Did they maintain the property? Would you rent to them again?</p><h3>Step 4: Trust the Process</h3><p>Even if an applicant seems great in person, never skip verification. Document everything.</p>', category:'all', tags:'screening,beginner', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'Maintenance Budgeting for Multi-Unit Properties', description:'Learn how to forecast maintenance costs, build reserve funds, and avoid surprise expenses across your rental portfolio.', type:'video', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', category:'all', tags:'maintenance,finance', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'Understanding the Residential Tenancies Act', description:'A beginner-friendly breakdown of your rights and responsibilities as a landlord under Canadian tenancy law.', type:'guide', content:'<h3>Know Your Legal Obligations</h3><p>Every province has its own Residential Tenancies Act. Core principles include:</p><ul><li><strong>Right to Quiet Enjoyment</strong> — Tenants have the right to peace. You need 24h notice to enter.</li><li><strong>Maintenance Standards</strong> — Keep the property in good repair.</li><li><strong>Rent Increases</strong> — Most provinces cap annual increases and require written notice.</li><li><strong>Eviction Process</strong> — Specific legal grounds and procedures must be followed.</li></ul>', category:'all', tags:'legal,beginner', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'How Kru Saves Property Managers 10+ Hours/Week', description:'See how the Kru platform automates maintenance coordination, contractor dispatch, and tenant communication.', type:'video', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', category:'all', tags:'kru,platform', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'The PM Playbook: From 1 Unit to 50', description:'Real strategies from property managers who scaled their portfolio. Covers systems, hiring, technology, and mindset shifts.', type:'blog', content:'<h3>Scaling Your Portfolio</h3><h3>1-5 Units: The DIY Phase</h3><p>Handle most things yourself. Focus on basics of tenant relations and bookkeeping.</p><h3>5-15 Units: The Systems Phase</h3><p>Build repeatable processes. Use software, standardize leases, build a contractor network.</p><h3>15-50 Units: The Team Phase</h3><p>Hire help. Use platforms like Kru to automate maintenance. Focus on acquisitions and strategy.</p>', category:'all', tags:'scaling,strategy', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'Setting Up Your First Rental Property', description:'A complete walkthrough for first-time landlords — from finding the right property to getting your first tenant.', type:'guide', content:'<h3>Your First Rental Checklist</h3><ol><li>Research your market — rents, vacancy rates, demographics.</li><li>Run the numbers — mortgage, taxes, insurance, maintenance reserves.</li><li>Prepare the property — safety codes, smoke detectors, secure entries.</li><li>Get landlord insurance and consider umbrella coverage.</li><li>Create a province-specific lease agreement.</li><li>List and market with quality photos.</li><li>Screen tenants thoroughly.</li><li>Do a move-in inspection with signed documentation.</li></ol>', category:'all', tags:'beginner,setup', created_at:new Date().toISOString() });
+  DB.insert('resources', { title:'Property Management Tech Stack 2025', description:'The best apps and tools modern PMs use to automate workflow, from rent collection to contractor management.', type:'blog', content:'<h3>Essential Tools for Modern PMs</h3><ul><li><strong>Kru (mykru.ca)</strong> — Maintenance coordination and contractor management.</li><li><strong>Accounting Software</strong> — Track income, expenses, tax reports.</li><li><strong>Tenant Communication</strong> — Centralized messaging.</li><li><strong>Digital Lease Signing</strong> — E-signatures save time.</li><li><strong>Inspection Apps</strong> — Timestamped photos and notes.</li></ul>', category:'all', tags:'technology,tools', created_at:new Date().toISOString() });
+}
+
+// ================================================================
+//  APP STATE & CONTROLLER
+// ================================================================
+const App = {
+  state: {
+    user: JSON.parse(localStorage.getItem('kru_current_user') || 'null'),
+    page: 'home',
+    courses: [],
+    currentCourse: null,
+    currentLesson: null,
+    currentQuiz: null,
+    quizAnswers: {},
+    quizResults: null,
+    courseProgress: null,
+    showNotifPanel: false,
+    showUserMenu: false,
+    mobileNav: false,
+    quizTimerId: null,
+    quizTimeLeft: 0,
+    adminTab: 'courses',
+    resourceFilter: 'all',
+    currentResource: null,
+    showChatbot: false,
+    chatbotStep: 0,
+    chatbotProfile: null,
+  },
+
+  // Helpers
+  esc(s){ if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; },
+  timeAgo(d){ const s=Math.floor((Date.now()-new Date(d))/1000); if(s<60) return 'just now'; if(s<3600) return Math.floor(s/60)+'m ago'; if(s<86400) return Math.floor(s/3600)+'h ago'; if(s<604800) return Math.floor(s/86400)+'d ago'; return new Date(d).toLocaleDateString(); },
+  toast(msg, type='info'){ const c=document.getElementById('toasts'), t=document.createElement('div'); t.className='toast '+type; t.textContent=msg; c.appendChild(t); setTimeout(()=>t.remove(),4000); },
+
+  go(page, extra={}){
+    if(this.state.quizTimerId){ clearInterval(this.state.quizTimerId); this.state.quizTimerId=null; }
+    Object.assign(this.state, { page, showNotifPanel:false, showUserMenu:false, mobileNav:false, ...extra });
+    window.scrollTo(0,0);
+    this.render();
+  },
+
+  // Auth
+  login(email, pw){
+    const u = DB.find('users', x=>x.email===email && x.password===pw);
+    if(!u) return this.toast('Invalid email or password','error');
+    DB.update('users', u.id, { last_active: new Date().toISOString() });
+    this.state.user = u;
+    localStorage.setItem('kru_current_user', JSON.stringify(u));
+    this.toast('Welcome back, '+u.first_name+'!','success');
+    this.go(u.role==='admin'?'admin':'dashboard');
+  },
+  register(data){
+    if(!data.first_name||!data.last_name||!data.email||!data.password) return this.toast('All fields required','error');
+    if(DB.find('users', x=>x.email===data.email)) return this.toast('Email already registered','error');
+    const u = DB.insert('users', { ...data, role:'student', email_notif:true, sms_notif:true, push_notif:true, created_at:new Date().toISOString(), last_active:new Date().toISOString() });
+    DB.insert('notifications', { user_id:u.id, title:'Welcome to Kru Academy!', message:'Start exploring our courses to build your property management skills.', type:'info', is_read:false, created_at:new Date().toISOString() });
+    this.state.user = u;
+    localStorage.setItem('kru_current_user', JSON.stringify(u));
+    this.toast('Welcome to Kru Academy, '+u.first_name+'!','success');
+    this.go('dashboard');
+  },
+  logout(){ this.state.user=null; localStorage.removeItem('kru_current_user'); this.go('home'); },
+  updateProfile(d){
+    const u = DB.update('users', this.state.user.id, d);
+    this.state.user = u;
+    localStorage.setItem('kru_current_user', JSON.stringify(u));
+    this.toast('Profile updated!','success');
+    this.render();
+  },
+
+  // Courses
+  getCourses(){ return DB.filter('courses', c=>c.is_published); },
+  getCourse(id){ return DB.find('courses', c=>c.id===id); },
+  getModules(courseId){ return DB.filter('modules', m=>m.course_id===courseId).sort((a,b)=>a.sort_order-b.sort_order); },
+  getLessons(moduleId){ return DB.filter('lessons', l=>l.module_id===moduleId).sort((a,b)=>a.sort_order-b.sort_order); },
+  getQuizzes(courseId){ return DB.filter('quizzes', q=>q.course_id===courseId); },
+  getQuestions(quizId){ return DB.filter('questions', q=>q.quiz_id===quizId).sort((a,b)=>a.sort_order-b.sort_order); },
+  getAnswers(qId){ return DB.filter('answers', a=>a.question_id===qId).sort((a,b)=>a.sort_order-b.sort_order); },
+
+  // Enrollment
+  isEnrolled(courseId){ return !!DB.find('enrollments', e=>e.user_id===this.state.user?.id && e.course_id===courseId); },
+  enroll(courseId){
+    if(!this.state.user) return this.go('register');
+    const c = this.getCourse(courseId);
+    if(this.isEnrolled(courseId)) return this.toast('Already enrolled','error');
+    DB.insert('enrollments', { user_id:this.state.user.id, course_id:courseId, payment_status:c.is_free?'free':'pending', payment_amount:c.price, enrolled_at:new Date().toISOString(), completed_at:null });
+    DB.insert('notifications', { user_id:this.state.user.id, title:'Enrolled Successfully!', message:'You are now enrolled in "'+c.title+'". Start learning today!', type:'achievement', is_read:false, created_at:new Date().toISOString() });
+    if(!c.is_free){ this.go('payment', { paymentCourse:c }); }
+    else{ this.toast('Enrolled successfully!','success'); this.render(); }
+  },
+  pay(courseId){
+    DB.update('enrollments', DB.find('enrollments', e=>e.user_id===this.state.user.id && e.course_id===courseId).id, { payment_status:'paid', payment_date:new Date().toISOString() });
+    this.toast('Payment successful!','success');
+    this.state.currentCourse = this.getCourse(courseId);
+    this.go('course-view', { currentLesson:null });
+  },
+
+  // Progress
+  getProgress(courseId){
+    const uid = this.state.user?.id;
+    if(!uid) return null;
+    const modules = this.getModules(courseId);
+    let totalLessons = 0, completedLessons = 0, lessonProgress = {};
+    modules.forEach(m=>{ this.getLessons(m.id).forEach(l=>{ totalLessons++; const p=DB.find('lesson_progress', x=>x.user_id===uid&&x.lesson_id===l.id&&x.completed); if(p){ completedLessons++; lessonProgress[l.id]=true; } }); });
+    return { totalLessons, completedLessons, progress: totalLessons>0?Math.round(completedLessons/totalLessons*100):0, lessonProgress };
+  },
+  completeLesson(lessonId){
+    const existing = DB.find('lesson_progress', x=>x.user_id===this.state.user.id&&x.lesson_id===lessonId);
+    if(existing) DB.update('lesson_progress', existing.id, { completed:true, completed_at:new Date().toISOString() });
+    else DB.insert('lesson_progress', { user_id:this.state.user.id, lesson_id:lessonId, completed:true, completed_at:new Date().toISOString() });
+    this.toast('Lesson completed!','success');
+    this.render();
+  },
+
+  // Quiz
+  startQuiz(quizId){
+    const quiz = DB.find('quizzes', q=>q.id===quizId);
+    const attempts = DB.count('quiz_attempts', a=>a.user_id===this.state.user.id&&a.quiz_id===quizId);
+    this.state.currentQuiz = quiz;
+    this.state.currentQuiz._attempts = attempts;
+    this.state.quizAnswers = {};
+    this.state.quizResults = null;
+    if(quiz.time_limit > 0){
+      this.state.quizTimeLeft = quiz.time_limit * 60;
+      this.state.quizTimerId = setInterval(()=>{
+        this.state.quizTimeLeft--;
+        const el = document.getElementById('quiz-timer');
+        if(el) el.textContent = Math.floor(this.state.quizTimeLeft/60)+':'+String(this.state.quizTimeLeft%60).padStart(2,'0');
+        if(this.state.quizTimeLeft<=0) this.submitQuiz();
+      }, 1000);
+    }
+    this.go('quiz');
+  },
+  selectAnswer(qId, aId, multi){
+    if(multi){
+      if(!this.state.quizAnswers[qId]) this.state.quizAnswers[qId]=[];
+      const idx=this.state.quizAnswers[qId].indexOf(aId);
+      if(idx>-1) this.state.quizAnswers[qId].splice(idx,1); else this.state.quizAnswers[qId].push(aId);
+    } else { this.state.quizAnswers[qId]=[aId]; }
+    this.render();
+  },
+  submitQuiz(){
+    if(this.state.quizTimerId){ clearInterval(this.state.quizTimerId); this.state.quizTimerId=null; }
+    const quiz = this.state.currentQuiz;
+    const questions = this.getQuestions(quiz.id);
+    let totalPts=0, earnedPts=0, results=[];
+    questions.forEach(q=>{
+      totalPts+=q.points;
+      const correct = DB.filter('answers', a=>a.question_id===q.id&&a.is_correct).map(a=>a.id);
+      const user = this.state.quizAnswers[q.id]||[];
+      const ok = correct.length===user.length && correct.every(a=>user.includes(a));
+      if(ok) earnedPts+=q.points;
+      results.push({ questionId:q.id, correct:ok, correctAnswers:correct, userAnswers:user, explanation:q.explanation });
+    });
+    const score = totalPts>0?Math.round(earnedPts/totalPts*100):0;
+    const passed = score>=quiz.passing_score;
+    DB.insert('quiz_attempts', { user_id:this.state.user.id, quiz_id:quiz.id, score, passed, created_at:new Date().toISOString() });
+
+    if(quiz.quiz_type==='final_exam' && passed){
+      if(!DB.find('certificates', c=>c.user_id===this.state.user.id&&c.course_id===quiz.course_id)){
+        const certNum = 'KRU-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).substr(2,4).toUpperCase();
+        DB.insert('certificates', { user_id:this.state.user.id, course_id:quiz.course_id, certificate_number:certNum, issued_at:new Date().toISOString() });
+        const enr = DB.find('enrollments', e=>e.user_id===this.state.user.id&&e.course_id===quiz.course_id);
+        if(enr) DB.update('enrollments', enr.id, { completed_at:new Date().toISOString() });
+        DB.insert('notifications', { user_id:this.state.user.id, title:'Congratulations! Certificate Earned!', message:'You earned your Kru Academy Certificate! #'+certNum, type:'achievement', is_read:false, created_at:new Date().toISOString() });
+      }
+    }
+    this.state.quizResults = { score, passed, totalPts, earnedPts, results, passing_score:quiz.passing_score };
+    this.render();
+  },
+
+  // Notes
+  saveNote(content, lessonId, courseId){
+    if(!content.trim()) return;
+    DB.insert('notes', { user_id:this.state.user.id, lesson_id:lessonId, course_id:courseId, content, created_at:new Date().toISOString() });
+    this.toast('Note saved!','success');
+    this.render();
+  },
+  deleteNote(id){ DB.remove('notes', id); this.render(); },
+  getNotes(){ return DB.filter('notes', n=>n.user_id===this.state.user?.id).sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)); },
+
+  // Notifications
+  getNotifications(){
+    return DB.filter('notifications', n=>n.user_id===this.state.user?.id).sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+  },
+  unreadCount(){ return DB.count('notifications', n=>n.user_id===this.state.user?.id&&!n.is_read); },
+  markAllRead(){ DB.filter('notifications', n=>n.user_id===this.state.user?.id&&!n.is_read).forEach(n=>DB.update('notifications', n.id, { is_read:true })); this.render(); },
+  markRead(id){ DB.update('notifications', id, { is_read:true }); this.render(); },
+
+  // Certificates
+  getCertificates(){ return DB.filter('certificates', c=>c.user_id===this.state.user?.id).sort((a,b)=>new Date(b.issued_at)-new Date(a.issued_at)); },
+
+  // Admin
+  adminCreateCourse(d){ DB.insert('courses', { ...d, is_published:false, created_by:this.state.user.id, created_at:new Date().toISOString() }); this.toast('Course created!','success'); this.render(); },
+  adminCreateModule(d){ DB.insert('modules', { ...d, sort_order:d.sort_order||0 }); this.toast('Module created!','success'); this.render(); },
+  adminCreateLesson(d){ DB.insert('lessons', { ...d, sort_order:d.sort_order||0 }); this.toast('Lesson added!','success'); this.render(); },
+  adminCreateQuiz(d){ DB.insert('quizzes', d); this.toast('Quiz created!','success'); this.render(); },
+  adminCreateQuestion(d){
+    const q = DB.insert('questions', { quiz_id:d.quiz_id, text:d.text, type:d.type, explanation:d.explanation, points:d.points||1, sort_order:d.sort_order||0 });
+    (d.answers||[]).forEach((a,i)=>DB.insert('answers', { question_id:q.id, text:a.text, is_correct:a.correct, sort_order:i }));
+    this.toast('Question added!','success'); this.render();
+  },
+  adminTogglePublish(id){
+    const c = this.getCourse(id);
+    DB.update('courses', id, { is_published:!c.is_published });
+    this.toast(c.is_published?'Unpublished':'Published','success');
+    this.render();
+  },
+  adminSendReminder(userId){
+    DB.insert('notifications', { user_id:userId, title:'We Miss You!', message:'It has been a while since your last visit. Your courses are waiting for you!', type:'reminder', is_read:false, created_at:new Date().toISOString() });
+    this.toast('Reminder sent!','success');
+  },
+  adminSendBulk(){
+    const week = Date.now()-7*86400000;
+    let sent=0;
+    DB.filter('users', u=>u.role==='student'&&new Date(u.last_active)<week).forEach(u=>{
+      DB.insert('notifications', { user_id:u.id, title:'We Miss You!', message:'Come back and continue your learning journey at Kru Academy!', type:'reminder', is_read:false, created_at:new Date().toISOString() });
+      sent++;
+    });
+    this.toast(`Sent ${sent} reminders`,'success');
+  },
+
+  // YouTube ID extractor
+  ytId(url){ const m=(url||'').match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+)/); return m?m[1]:''; },
+
+  // ================================================================
+  //  RENDER
+  // ================================================================
+  render(){
+    const $ = document.getElementById('app');
+    let h = this.renderNav();
+    switch(this.state.page){
+      case 'home': h+=this.renderHome(); break;
+      case 'get-started': h+=this.renderGetStarted(); break;
+      case 'resources': h+=this.renderResources(); break;
+      case 'resource-detail': h+=this.renderResourceDetail(); break;
+      case 'courses': h+=this.renderCourses(); break;
+      case 'course-detail': h+=this.renderCourseDetail(); break;
+      case 'course-view': h+=this.renderCourseView(); break;
+      case 'quiz': h+=this.renderQuizPage(); break;
+      case 'login': h+=this.renderLogin(); break;
+      case 'register': h+=this.renderRegister(); break;
+      case 'dashboard': h+=this.renderDashboard(); break;
+      case 'my-courses': h+=this.renderMyCourses(); break;
+      case 'certificates': h+=this.renderCertificatesPage(); break;
+      case 'notes': h+=this.renderNotesPage(); break;
+      case 'profile': h+=this.renderProfile(); break;
+      case 'payment': h+=this.renderPayment(); break;
+      case 'admin': h+=this.renderAdmin(); break;
+      default: h+=this.renderHome();
+    }
+    if(!['course-view','quiz'].includes(this.state.page)) h+=this.renderFooter();
+    h+=this.renderNotifPanel();
+    if(this.state.showChatbot) h+=this.renderChatbot();
+    $.innerHTML = h;
+  },
+
+  // NAV
+  renderNav(){
+    const u=this.state.user, uc=this.unreadCount();
+    return `<nav class="navbar">
+      <div class="nav-logo" onclick="App.go('home')"><div class="logo-icon">K</div>Kru <em>Academy</em></div>
+      <button class="mobile-toggle" onclick="App.state.mobileNav=!App.state.mobileNav;App.render()">&#9776;</button>
+      <div class="nav-links ${this.state.mobileNav?'show':''}">
+        <button class="nav-link ${this.state.page==='home'?'active':''}" onclick="App.go('home')">Home</button>
+        <button class="nav-link ${this.state.page==='get-started'?'active':''}" onclick="App.go('get-started')">Become a PM</button>
+        <button class="nav-link ${this.state.page==='courses'?'active':''}" onclick="App.go('courses')">Courses</button>
+        <button class="nav-link ${this.state.page==='resources'?'active':''}" onclick="App.go('resources')">Free Resources</button>
+        ${u?`<button class="nav-link ${this.state.page==='dashboard'?'active':''}" onclick="App.go('dashboard')">Dashboard</button>
+        <button class="nav-link ${this.state.page==='my-courses'?'active':''}" onclick="App.go('my-courses')">My Courses</button>`:''}
+        ${u&&u.role==='admin'?`<button class="nav-link ${this.state.page==='admin'?'active':''}" onclick="App.go('admin')">Admin</button>`:''}
+        <a href="https://mykru.ca" target="_blank" rel="noopener" class="nav-kru-link" title="Discover Kru — Streamline your property maintenance">&#9889; Kru Maintenance Platform</a>
+      </div>
+      <div class="nav-right">
+        ${u?`<button class="notif-btn" onclick="App.state.showNotifPanel=!App.state.showNotifPanel;App.render()">&#128276;${uc>0?`<span class="notif-badge">${uc>9?'9+':uc}</span>`:''}</button>
+        <div style="position:relative"><div class="user-avatar" onclick="App.state.showUserMenu=!App.state.showUserMenu;App.render()">${u.first_name[0]}${u.last_name[0]}</div>
+        <div class="user-dropdown ${this.state.showUserMenu?'show':''}">
+          <button onclick="App.go('profile')">&#128100; Profile</button>
+          <button onclick="App.go('notes')">&#128221; My Notes</button>
+          <button onclick="App.go('certificates')">&#127942; Certificates</button>
+          <button onclick="App.logout()">&#128682; Logout</button>
+        </div></div>`
+        :`<button class="btn btn-sm" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3)" onclick="App.go('login')">Login</button>
+        <button class="btn btn-primary btn-sm" onclick="App.go('register')">Sign Up</button>`}
+      </div></nav>`;
+  },
+
+  // HOME
+  renderHome(){
+    const courses = this.getCourses().slice(0,3);
+    return `<div class="hero">
+      <h1>Master Property Management<br>with <em>Kru Academy</em></h1>
+      <p>Expert-led courses, certifications, and resources to level up your property management skills. Free and premium content powered by Kru.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary btn-lg" onclick="App.go('courses')">Explore Courses</button>
+        <button class="btn btn-lg" style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);color:#fff" onclick="App.showChatbotManual()">Help Me Find My Path</button>
+        ${!this.state.user?`<button class="btn btn-lg" style="background:transparent;border:1.5px solid rgba(255,255,255,.2);color:#fff" onclick="App.go('register')">Sign Up Free</button>`:''}
+      </div></div>
+
+      <div class="section-light">
+        <div class="container" style="padding-top:0;padding-bottom:0">
+          <div style="text-align:center;margin-bottom:48px">
+            <h2 class="section-title">Why Kru Academy?</h2>
+            <p class="section-subtitle">Everything you need to become an expert property manager, all in one place.</p>
+          </div>
+          <div class="grid-4">
+            ${[['&#127891;','Expert Content','Courses created by experienced property management professionals'],
+              ['&#127942;','Certifications','Earn Kru Academy Certificates to showcase your expertise'],
+              ['&#128218;','Quizzes & Exams','Test your knowledge with interactive quizzes and final exams'],
+              ['&#128241;','Learn Anywhere','Access courses on any device with videos, text, and social content']
+            ].map(([ic,t,d])=>`<div class="card card-body" style="text-align:center;padding:32px"><div style="font-size:40px;margin-bottom:16px">${ic}</div><h3 style="font-size:17px;margin-bottom:8px">${t}</h3><p style="font-size:14px;color:var(--text-mid);line-height:1.5">${d}</p></div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <div class="section-white">
+        <div class="container" style="padding-top:0;padding-bottom:0">
+          <div style="text-align:center;margin-bottom:36px"><h2 class="section-title" style="font-size:30px">Featured Courses</h2></div>
+          <div class="grid-3">${courses.map(c=>this.renderCourseCard(c)).join('')}</div>
+          <div style="text-align:center;margin-top:36px"><button class="btn btn-outline" onclick="App.go('courses')">View All Courses</button></div>
+        </div>
+      </div>
+
+      <div class="section-light">
+        <div class="container" style="padding-top:0;padding-bottom:0">
+          <div style="text-align:center;margin-bottom:36px">
+            <h2 class="section-title" style="font-size:30px">Free Resources</h2>
+            <p class="section-subtitle">Videos, blogs, and guides to help you succeed — no signup required.</p>
+          </div>
+          <div class="grid-3">${DB.getAll('resources').slice(0,3).map(r=>this.renderResourceCard(r)).join('')}</div>
+          <div style="text-align:center;margin-top:36px"><button class="btn btn-outline" onclick="App.go('resources')">View All Free Resources</button></div>
+        </div>
+      </div>
+
+      <div class="section-dark">
+        <div class="container" style="padding-top:0;padding-bottom:0">
+          <div style="display:flex;align-items:center;gap:48px;flex-wrap:wrap">
+            <div style="flex:1;min-width:300px">
+              <div style="font-size:13px;text-transform:uppercase;letter-spacing:1.5px;opacity:.4;margin-bottom:12px;font-weight:600">Powered by Kru</div>
+              <h2 style="font-size:32px;margin-bottom:16px;font-weight:800;letter-spacing:-.02em">Already Managing Properties?</h2>
+              <p style="font-size:16px;opacity:.6;margin-bottom:28px;line-height:1.7">Kru connects you with pre-vetted contractors, automates maintenance requests, and gives tenants a seamless way to report issues. Stop juggling phone calls — let Kru handle it.</p>
+              <a href="https://mykru.ca" target="_blank" rel="noopener" class="btn btn-primary btn-lg" style="text-decoration:none">Explore Kru Platform</a>
+            </div>
+            <div style="flex:0 0 auto;display:flex;flex-direction:column;gap:12px">
+              ${[['&#128267;','Pre-vetted Contractors','Licensed, insured, background-checked'],['&#128241;','Mobile-First App','Submit & approve requests in seconds'],['&#128176;','Transparent Pricing','No hidden fees, no surprises']].map(([ic,t,d])=>
+                `<div style="display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-sm);padding:16px 20px"><span style="font-size:24px">${ic}</span><div><div style="font-weight:600;font-size:14px;color:#fff">${t}</div><div style="font-size:13px;opacity:.5">${d}</div></div></div>`
+              ).join('')}
+            </div>
+          </div>
+        </div>
+      </div>`;
+  },
+
+  // COURSE CARD
+  renderCourseCard(c){
+    const icons={Fundamentals:'&#127968;',Maintenance:'&#128295;',Legal:'&#9878;',Platform:'&#128187;',Finance:'&#128176;'};
+    const students = DB.count('enrollments', e=>e.course_id===c.id);
+    const modules = DB.count('modules', m=>m.course_id===c.id);
+    return `<div class="card" onclick="App.state.currentCourse=App.getCourse(${c.id});App.go('course-detail')" style="cursor:pointer">
+      <div class="course-thumb">${icons[c.category]||'&#128218;'}
+        <span class="badge ${c.is_free?'badge-free':'badge-paid'}" style="position:absolute;top:12px;right:12px">${c.is_free?'FREE':'$'+c.price.toFixed(2)}</span>
+      </div>
+      <div class="card-body">
+        <span class="badge badge-${c.difficulty}" style="font-size:11px;padding:3px 10px;margin-bottom:8px">${c.difficulty[0].toUpperCase()+c.difficulty.slice(1)}</span>
+        <h3 style="font-size:18px;margin-bottom:8px">${this.esc(c.title)}</h3>
+        <p style="font-size:14px;color:var(--text-mid)">${this.esc((c.description||'').substring(0,120))}${(c.description||'').length>120?'...':''}</p>
+        <div class="course-meta"><span>&#128218; ${modules} modules</span><span>&#128101; ${students} students</span></div>
+        <div style="margin-top:16px;display:flex;align-items:center;justify-content:space-between">
+          <span class="price ${c.is_free?'free':''}">${c.is_free?'Free':'$'+c.price.toFixed(2)}</span>
+          <button class="btn btn-primary btn-sm">View Course</button>
+        </div>
+      </div></div>`;
+  },
+
+  // COURSES
+  renderCourses(){
+    const courses = this.getCourses();
+    return `<div class="container"><div style="margin-bottom:32px"><h1 style="font-size:32px;margin-bottom:8px">All Courses</h1><p style="color:var(--text-mid)">Browse our property management courses and start learning today.</p></div>
+      ${courses.length?`<div class="grid-3">${courses.map(c=>this.renderCourseCard(c)).join('')}</div>`:`<div class="empty-state"><h3>No courses available yet</h3></div>`}
+    </div>`;
+  },
+
+  // GET STARTED — PROSPECTIVE PMs
+  renderGetStarted(){
+    const freeCourse = this.getCourses().find(c=>c.title.includes('Fundamentals'));
+    const kruCourse = this.getCourses().find(c=>c.title.includes('Getting Started with Kru'));
+    const screenRes = DB.find('resources', r=>r.title.includes('Screen Tenants'));
+    const setupRes = DB.find('resources', r=>r.title.includes('First Rental'));
+    const mistakesRes = DB.find('resources', r=>r.title.includes('Mistakes'));
+    const legalRes = DB.find('resources', r=>r.title.includes('Tenancies Act'));
+    return `
+      <div class="gs-hero">
+        <h1>Your Path to Becoming a<br>Successful Property Manager</h1>
+        <p>Whether you are buying your first rental property or thinking about a career in property management, Kru Academy will guide you every step of the way — for free.</p>
+        <div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
+          ${freeCourse?`<button class="btn btn-accent btn-lg" onclick="App.state.currentCourse=App.getCourse(${freeCourse.id});App.go('course-detail')">Start Free Course</button>`:''}
+          <button class="btn btn-lg" style="background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);color:#fff" onclick="App.showChatbotManual()">&#128075; Help Me Find My Path</button>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Who is this for -->
+        <div style="text-align:center;margin-bottom:48px">
+          <h2 style="font-size:30px;margin-bottom:12px">Is Property Management Right for You?</h2>
+          <p style="color:var(--text-mid);font-size:17px;max-width:640px;margin:0 auto">Rental property ownership is one of the most reliable ways to build long-term wealth. But it takes the right knowledge, systems, and mindset. Here is who thrives in this space.</p>
+        </div>
+
+        <div class="grid-3" style="margin-bottom:56px">
+          <div class="card card-body" style="text-align:center;padding:32px;border-top:4px solid var(--success)">
+            <div style="font-size:40px;margin-bottom:12px">&#127793;</div>
+            <h3 style="font-size:17px;margin-bottom:8px">First-Time Investors</h3>
+            <p style="font-size:14px;color:var(--text-mid);line-height:1.5">You have been thinking about buying a rental property but are not sure where to start. You want to learn the fundamentals before making a big financial commitment.</p>
+          </div>
+          <div class="card card-body" style="text-align:center;padding:32px;border-top:4px solid var(--accent)">
+            <div style="font-size:40px;margin-bottom:12px">&#128161;</div>
+            <h3 style="font-size:17px;margin-bottom:8px">Career Changers</h3>
+            <p style="font-size:14px;color:var(--text-mid);line-height:1.5">You are considering property management as a career path. You want to understand the day-to-day reality, earn certifications, and build credibility with property owners.</p>
+          </div>
+          <div class="card card-body" style="text-align:center;padding:32px;border-top:4px solid var(--primary)">
+            <div style="font-size:40px;margin-bottom:12px">&#127968;</div>
+            <h3 style="font-size:17px;margin-bottom:8px">New Landlords</h3>
+            <p style="font-size:14px;color:var(--text-mid);line-height:1.5">You just acquired your first property or are about to close. You need practical skills fast — tenant screening, lease agreements, maintenance, and legal compliance.</p>
+          </div>
+        </div>
+
+        <!-- Roadmap -->
+        <div style="margin-bottom:56px">
+          <div style="text-align:center;margin-bottom:32px">
+            <h2 style="font-size:28px;margin-bottom:8px">Your Learning Roadmap</h2>
+            <p style="color:var(--text-mid);font-size:16px">Follow these steps and you will be managing your first property with confidence.</p>
+          </div>
+          <div class="gs-step">
+            <div class="gs-step-num">1</div>
+            <div style="flex:1">
+              <h3>Learn the Fundamentals</h3>
+              <p>Understand the core responsibilities of a property manager — tenant relations, rent collection, maintenance, financials, and legal obligations. Our free course covers it all.</p>
+              ${freeCourse?`<button class="btn btn-sm btn-primary" style="margin-top:12px" onclick="App.state.currentCourse=App.getCourse(${freeCourse.id});App.go('course-detail')">&#127891; Take Free Course</button>`:''}
+            </div>
+          </div>
+          <div class="gs-step">
+            <div class="gs-step-num">2</div>
+            <div style="flex:1">
+              <h3>Know the Law</h3>
+              <p>Every province has different rules around rent increases, security deposits, evictions, and tenant rights. Knowing your legal obligations protects you from costly mistakes.</p>
+              ${legalRes?`<button class="btn btn-sm btn-outline" style="margin-top:12px" onclick="App.state.currentResource=DB.find('resources',r=>r.id===${legalRes.id});App.go('resource-detail')">&#128214; Read Free Legal Guide</button>`:''}
+            </div>
+          </div>
+          <div class="gs-step">
+            <div class="gs-step-num">3</div>
+            <div style="flex:1">
+              <h3>Master Tenant Screening</h3>
+              <p>The single most important skill you will learn. A thorough screening process prevents 90% of problems before they start — missed rent, property damage, and legal disputes.</p>
+              ${screenRes?`<button class="btn btn-sm btn-outline" style="margin-top:12px" onclick="App.state.currentResource=DB.find('resources',r=>r.id===${screenRes.id});App.go('resource-detail')">&#128221; Read Screening Guide</button>`:''}
+            </div>
+          </div>
+          <div class="gs-step">
+            <div class="gs-step-num">4</div>
+            <div style="flex:1">
+              <h3>Set Up Your Property</h3>
+              <p>From insurance and safety compliance to lease agreements and move-in inspections — get a complete checklist for preparing your first rental for tenants.</p>
+              ${setupRes?`<button class="btn btn-sm btn-outline" style="margin-top:12px" onclick="App.state.currentResource=DB.find('resources',r=>r.id===${setupRes.id});App.go('resource-detail')">&#128214; Read Setup Guide</button>`:''}
+            </div>
+          </div>
+          <div class="gs-step">
+            <div class="gs-step-num">5</div>
+            <div style="flex:1">
+              <h3>Streamline with Technology</h3>
+              <p>Stop juggling phone calls and spreadsheets. Use the Kru platform to automate maintenance requests, connect with pre-vetted contractors, and communicate with tenants seamlessly.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+                ${kruCourse?`<button class="btn btn-sm btn-primary" onclick="App.state.currentCourse=App.getCourse(${kruCourse.id});App.go('course-detail')">&#128218; Kru Platform Course</button>`:''}
+                <a href="https://mykru.ca" target="_blank" rel="noopener" class="btn btn-sm btn-accent" style="text-decoration:none">&#9889; Explore Kru</a>
+              </div>
+            </div>
+          </div>
+          <div class="gs-step" style="border:2px solid var(--primary);background:rgba(60,89,93,.02)">
+            <div class="gs-step-num" style="background:linear-gradient(135deg,#D4AF37,#F5D060);color:#000">&#127942;</div>
+            <div style="flex:1">
+              <h3>Earn Your Certificate</h3>
+              <p>Complete the fundamentals course, pass the final exam, and earn your official <strong>Kru Academy Certificate</strong>. Show property owners, partners, and employers that you have the knowledge to manage effectively.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pre-purchase checklist -->
+        <div class="grid-2" style="margin-bottom:56px;gap:32px">
+          <div>
+            <h2 style="font-size:24px;margin-bottom:20px">&#9989; Pre-Purchase Checklist</h2>
+            <p style="color:var(--text-mid);font-size:15px;margin-bottom:20px">Before you buy your first rental property, make sure you can check off each of these items.</p>
+            <ul class="gs-checklist">
+              <li><span class="gs-check">&#10003;</span><div><strong>I understand the financial commitment</strong><br><span style="font-size:13px;color:var(--text-mid)">Mortgage, taxes, insurance, vacancy reserves, and 1-2% annual maintenance budget</span></div></li>
+              <li><span class="gs-check">&#10003;</span><div><strong>I know my local tenancy laws</strong><br><span style="font-size:13px;color:var(--text-mid)">Rent control, deposit rules, notice requirements, and eviction procedures</span></div></li>
+              <li><span class="gs-check">&#10003;</span><div><strong>I have a tenant screening process</strong><br><span style="font-size:13px;color:var(--text-mid)">Credit checks, references, income verification, and consistent criteria</span></div></li>
+              <li><span class="gs-check">&#10003;</span><div><strong>I have landlord insurance</strong><br><span style="font-size:13px;color:var(--text-mid)">Not homeowner insurance — a policy that covers rental activity and liability</span></div></li>
+              <li><span class="gs-check">&#10003;</span><div><strong>I have a maintenance plan</strong><br><span style="font-size:13px;color:var(--text-mid)">A network of contractors or a platform like Kru to handle requests</span></div></li>
+              <li><span class="gs-check">&#10003;</span><div><strong>I have a lease agreement template</strong><br><span style="font-size:13px;color:var(--text-mid)">Province-specific, covering rent, rules, responsibilities, and notice periods</span></div></li>
+            </ul>
+          </div>
+          <div>
+            <h2 style="font-size:24px;margin-bottom:20px">&#128681; Common Myths, Busted</h2>
+            <p style="color:var(--text-mid);font-size:15px;margin-bottom:20px">Do not let these misconceptions stop you from getting started.</p>
+            <div class="gs-myth">
+              <div class="myth-label">&#10007; Myth</div>
+              <h4>"You need to be rich to start investing in rentals."</h4>
+              <div class="truth-label">&#10003; Reality</div>
+              <p>Many landlords start with a single unit — even a basement suite in their own home. House-hacking is how thousands of Canadian investors got started.</p>
+            </div>
+            <div class="gs-myth">
+              <div class="myth-label">&#10007; Myth</div>
+              <h4>"Being a landlord is passive income."</h4>
+              <div class="truth-label">&#10003; Reality</div>
+              <p>It takes real work — but with the right systems and tools (like Kru), you can automate most of the operational burden and focus on growth.</p>
+            </div>
+            <div class="gs-myth">
+              <div class="myth-label">&#10007; Myth</div>
+              <h4>"Tenants will destroy your property."</h4>
+              <div class="truth-label">&#10003; Reality</div>
+              <p>A strong screening process prevents most problems. The vast majority of tenants are responsible people who want a clean, well-maintained home.</p>
+            </div>
+            <div class="gs-myth">
+              <div class="myth-label">&#10007; Myth</div>
+              <h4>"You need a property management company from day one."</h4>
+              <div class="truth-label">&#10003; Reality</div>
+              <p>For 1-5 units, you can absolutely self-manage with the right knowledge. Kru Academy teaches you how, and the Kru platform fills in the operational gaps.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Free resources for beginners -->
+        <div style="margin-bottom:56px">
+          <div style="text-align:center;margin-bottom:28px">
+            <h2 style="font-size:28px;margin-bottom:8px">Free Resources to Get You Started</h2>
+            <p style="color:var(--text-mid)">Handpicked content for aspiring property managers — no signup required.</p>
+          </div>
+          <div class="grid-3">
+            ${[mistakesRes, screenRes, setupRes, legalRes].filter(Boolean).slice(0,3).map(r=>this.renderResourceCard(r)).join('')}
+          </div>
+          <div style="text-align:center;margin-top:24px">
+            <button class="btn btn-outline" onclick="App.go('resources')">View All Free Resources</button>
+          </div>
+        </div>
+
+        <!-- CTA banner -->
+        <div style="background:var(--dark);border-radius:var(--radius);padding:64px 40px;text-align:center;color:#fff;margin-bottom:16px">
+          <h2 style="font-size:32px;margin-bottom:14px;font-weight:800;letter-spacing:-.02em">Ready to Start Your Journey?</h2>
+          <p style="font-size:17px;opacity:.55;max-width:580px;margin:0 auto 32px;line-height:1.6">Join thousands of aspiring and active property managers building their skills with Kru Academy. Your first course is completely free.</p>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+            ${freeCourse?`<button class="btn btn-primary btn-lg" onclick="App.state.currentCourse=App.getCourse(${freeCourse.id});App.go('course-detail')">Start Free Course</button>`:''}
+            ${!this.state.user?`<button class="btn btn-lg" style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);color:#fff" onclick="App.go('register')">Create Free Account</button>`:''}
+            <a href="https://mykru.ca" target="_blank" rel="noopener" class="btn btn-lg" style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);color:#fff;text-decoration:none">Explore Kru Platform</a>
+          </div>
+        </div>
+      </div>`;
+  },
+
+  // FREE RESOURCES
+  renderResources(){
+    const filter = this.state.resourceFilter || 'all';
+    const allRes = DB.getAll('resources');
+    const filtered = filter==='all' ? allRes : allRes.filter(r=>r.type===filter);
+    const types = [{key:'all',label:'All Resources'},{key:'video',label:'&#127909; Videos'},{key:'blog',label:'&#128221; Blogs'},{key:'guide',label:'&#128214; Guides'}];
+    return `<div style="background:var(--dark);color:#fff;padding:60px 24px">
+      <div style="max-width:800px;margin:0 auto;text-align:center">
+        <h1 style="font-size:40px;margin-bottom:14px;font-weight:800;letter-spacing:-.02em">Free Resources</h1>
+        <p style="font-size:17px;opacity:.6;margin-bottom:16px">Videos, guides, and blog posts to help you succeed in property management — completely free.</p>
+        <p style="font-size:14px;opacity:.35">Powered by <a href="https://mykru.ca" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Kru</a> — the maintenance platform built for property managers.</p>
+      </div></div>
+      <div class="container">
+        <div class="resource-filter-bar">
+          ${types.map(t=>`<button class="resource-filter ${filter===t.key?'active':''}" onclick="App.state.resourceFilter='${t.key}';App.render()">${t.label}</button>`).join('')}
+        </div>
+        ${filtered.length?`<div class="grid-3">${filtered.map(r=>this.renderResourceCard(r)).join('')}</div>`:`<div class="empty-state"><h3>No resources found</h3></div>`}
+
+        <div style="margin-top:64px;background:var(--dark);border-radius:var(--radius);padding:56px 48px;text-align:center;color:#fff">
+          <h2 style="font-size:28px;margin-bottom:14px;font-weight:800">Ready to Streamline Your Maintenance?</h2>
+          <p style="font-size:16px;opacity:.6;max-width:560px;margin:0 auto 28px;line-height:1.6">Kru connects property managers with pre-vetted contractors, automates maintenance requests, and saves you 10+ hours per week.</p>
+          <a href="https://mykru.ca" target="_blank" rel="noopener" class="btn btn-primary btn-lg" style="text-decoration:none">Explore Kru Platform</a>
+        </div>
+      </div>`;
+  },
+
+  renderResourceCard(r){
+    const icons={video:'&#127909;',blog:'&#128221;',guide:'&#128214;',podcast:'&#127911;'};
+    return `<div class="card resource-card" onclick="App.state.currentResource=DB.find('resources',x=>x.id===${r.id});App.go('resource-detail')">
+      <div class="resource-thumb ${r.type}">${icons[r.type]||'&#128196;'}
+        <span class="resource-type ${r.type}">${r.type}</span>
+      </div>
+      <div class="card-body">
+        <h3 style="font-size:17px;margin-bottom:8px">${this.esc(r.title)}</h3>
+        <p style="font-size:14px;color:var(--text-mid);line-height:1.5">${this.esc((r.description||'').substring(0,120))}${(r.description||'').length>120?'...':''}</p>
+        <div style="margin-top:12px;display:flex;align-items:center;justify-content:space-between">
+          <span class="badge badge-free">FREE</span>
+          <span style="font-size:13px;color:var(--accent);font-weight:600">Read More &rarr;</span>
+        </div>
+      </div></div>`;
+  },
+
+  renderResourceDetail(){
+    const r = this.state.currentResource; if(!r) return '';
+    let content = '';
+    if(r.type==='video' && r.url){
+      const vid = this.ytId(r.url);
+      content = `<div class="video-container"><iframe src="https://www.youtube.com/embed/${vid}" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>`;
+    }
+    if(r.content) content += `<div class="lesson-content-text">${r.content}</div>`;
+    return `<div class="container" style="max-width:800px">
+      <button class="btn btn-outline btn-sm" onclick="App.go('resources')" style="margin-bottom:24px">&larr; Back to Resources</button>
+      <span class="badge badge-free" style="margin-bottom:12px">FREE</span>
+      <h1 style="font-size:32px;margin-bottom:12px">${this.esc(r.title)}</h1>
+      <p style="color:var(--text-mid);font-size:16px;margin-bottom:32px">${this.esc(r.description)}</p>
+      ${content}
+      <div style="margin-top:48px;background:var(--bg-section);border-radius:var(--radius);padding:32px;text-align:center">
+        <h3 style="font-size:20px;margin-bottom:8px">Want to go deeper?</h3>
+        <p style="color:var(--text-mid);margin-bottom:20px">Explore our full courses with quizzes, certifications, and expert instruction.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="App.go('courses')">Browse Courses</button>
+          <a href="https://mykru.ca" target="_blank" rel="noopener" class="btn btn-dark" style="text-decoration:none">Try Kru Platform</a>
+        </div>
+      </div>
+    </div>`;
+  },
+
+  // COURSE DETAIL
+  renderCourseDetail(){
+    const c=this.state.currentCourse; if(!c) return '';
+    const enrolled = this.isEnrolled(c.id);
+    const prog = enrolled ? this.getProgress(c.id) : null;
+    const modules = this.getModules(c.id);
+    const quizzes = this.getQuizzes(c.id);
+    let totalLessons=0; modules.forEach(m=>totalLessons+=this.getLessons(m.id).length);
+    return `<div style="background:var(--dark);color:#fff;padding:56px 24px">
+      <div style="max-width:800px;margin:0 auto">
+        <span class="badge badge-${c.difficulty}" style="margin-bottom:12px">${c.difficulty[0].toUpperCase()+c.difficulty.slice(1)}</span>
+        <h1 style="font-size:38px;margin-bottom:14px;font-weight:800;letter-spacing:-.02em">${this.esc(c.title)}</h1>
+        <p style="font-size:17px;opacity:.6;margin-bottom:24px;line-height:1.6">${this.esc(c.description)}</p>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;font-size:14px;opacity:.8;margin-bottom:24px">
+          <span>&#128218; ${modules.length} modules</span><span>&#127909; ${totalLessons} lessons</span><span>&#128221; ${quizzes.length} quizzes</span>
+        </div>
+        ${enrolled?`
+          <div style="background:rgba(255,255,255,.15);border-radius:var(--radius-sm);padding:16px;margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-weight:600">Your Progress</span><span>${prog.progress}%</span></div>
+            <div class="progress-bar" style="background:rgba(255,255,255,.2)"><div class="fill" style="width:${prog.progress}%"></div></div>
+          </div>
+          <button class="btn btn-accent btn-lg" onclick="App.state.currentLesson=null;App.go('course-view')">Continue Learning</button>`
+        :`<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+          <span style="font-size:28px;font-weight:800">${c.is_free?'Free':'$'+c.price.toFixed(2)}</span>
+          ${this.state.user?`<button class="btn btn-accent btn-lg" onclick="App.enroll(${c.id})">${c.is_free?'Enroll Free':'Enroll Now'}</button>`
+          :`<button class="btn btn-accent btn-lg" onclick="App.go('register')">Sign Up to Enroll</button>`}
+        </div>`}
+      </div></div>
+      <div class="container" style="max-width:800px">
+        <h2 style="font-size:24px;margin-bottom:20px">Course Curriculum</h2>
+        ${modules.map((m,i)=>{
+          const lessons=this.getLessons(m.id);
+          return `<div class="card" style="margin-bottom:12px">
+            <div class="module-title" style="padding:20px 24px"><span>Module ${i+1}: ${this.esc(m.title)}</span><span style="font-size:13px;color:var(--text-mid)">${lessons.length} lessons</span></div>
+            ${lessons.map(l=>`<div class="lesson-item" style="padding:14px 24px 14px 48px">
+              <span style="font-size:16px">${l.content_type==='youtube'||l.content_type==='video'?'&#127909;':l.content_type==='social'?'&#128241;':'&#128196;'}</span>
+              <span>${this.esc(l.title)}</span>
+              ${l.is_free_preview?'<span class="badge badge-free" style="font-size:10px;padding:2px 8px">Preview</span>':''}
+              <span class="duration">${l.duration} min</span>
+            </div>`).join('')}
+          </div>`;
+        }).join('')}
+        ${quizzes.filter(q=>q.quiz_type==='final_exam').map(q=>`<div class="card" style="margin-bottom:12px;border:2px solid var(--primary)">
+          <div style="padding:20px 24px;display:flex;align-items:center;gap:12px">
+            <span style="font-size:24px">&#127942;</span><div><strong>${this.esc(q.title)}</strong>
+            <div style="font-size:13px;color:var(--text-mid)">${this.esc(q.description)} | Passing: ${q.passing_score}%${q.time_limit?' | '+q.time_limit+' min':''}</div></div>
+          </div></div>`).join('')}
+      </div>`;
+  },
+
+  // COURSE VIEW (learning)
+  renderCourseView(){
+    const c=this.state.currentCourse; if(!c) return '';
+    const modules = this.getModules(c.id);
+    const prog = this.getProgress(c.id);
+    const quizzes = this.getQuizzes(c.id);
+    let lesson = this.state.currentLesson;
+    if(!lesson && modules.length){ const lessons=this.getLessons(modules[0].id); if(lessons.length) lesson=lessons[0]; }
+
+    return `<div class="course-layout">
+      <div class="course-sidebar">
+        <div class="sidebar-header">
+          <button class="btn btn-sm btn-outline" onclick="App.state.currentCourse=App.getCourse(${c.id});App.go('course-detail')" style="margin-bottom:12px">&larr; Back to Overview</button>
+          <h3 style="font-size:15px">${this.esc(c.title)}</h3>
+          ${prog?`<div class="progress-text" style="margin-top:8px">${prog.progress}% complete</div><div class="progress-bar"><div class="fill" style="width:${prog.progress}%"></div></div>`:''}
+        </div>
+        ${modules.map((m,i)=>{
+          const lessons=this.getLessons(m.id);
+          return `<div class="module-group">
+            <div class="module-title">Module ${i+1}: ${this.esc(m.title)}</div>
+            ${lessons.map(l=>{
+              const active=lesson&&lesson.id===l.id;
+              const done=prog&&prog.lessonProgress[l.id];
+              return `<div class="lesson-item ${active?'active':''} ${done?'completed':''}" onclick="App.state.currentLesson=DB.find('lessons',x=>x.id===${l.id});App.render()">
+                <span class="check-icon">${done?'&#10003;':''}</span><span>${this.esc(l.title)}</span><span class="duration">${l.duration}m</span>
+              </div>`;
+            }).join('')}
+          </div>`;
+        }).join('')}
+        ${quizzes.map(q=>`<div class="module-group"><div class="lesson-item" onclick="App.startQuiz(${q.id})" style="padding:16px 24px">
+          <span style="font-size:16px">${q.quiz_type==='final_exam'?'&#127942;':'&#128221;'}</span>
+          <span style="font-weight:600">${this.esc(q.title)}</span>
+        </div></div>`).join('')}
+      </div>
+      <div class="course-content">
+        ${lesson?this.renderLessonContent(lesson):`<div class="empty-state"><h3>Select a lesson to begin</h3></div>`}
+      </div></div>`;
+  },
+
+  renderLessonContent(l){
+    const done = this.getProgress(this.state.currentCourse.id)?.lessonProgress[l.id];
+    let h='';
+    if(l.content_type==='youtube'&&l.youtube_url){
+      h+=`<div class="video-container"><iframe src="https://www.youtube.com/embed/${this.ytId(l.youtube_url)}" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>`;
+    } else if(l.content_type==='video'&&l.video_url){
+      h+=`<div class="video-container"><video controls src="${this.esc(l.video_url)}"></video></div>`;
+    } else if(l.content_type==='social'&&l.social_url){
+      h+=`<div class="social-embed"><p style="font-size:48px;margin-bottom:16px">&#128241;</p><p style="margin-bottom:16px">Visit our social media for the latest tips and updates</p><a href="${this.esc(l.social_url)}" target="_blank" rel="noopener">Open Link &#8594;</a></div>`;
+    }
+    if(l.content_type==='text'&&l.text_content) h+=`<div class="lesson-content-text">${l.text_content}</div>`;
+    h+=`<div style="margin-bottom:24px"><h2 style="font-size:24px;margin-bottom:8px">${this.esc(l.title)}</h2><p style="color:var(--text-mid)">${this.esc(l.description)}</p></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+        ${!done?`<button class="btn btn-success" onclick="App.completeLesson(${l.id})">&#10003; Mark as Complete</button>`
+        :`<span style="color:var(--success);font-weight:600;padding:12px 0">&#10003; Completed</span>`}
+        <button class="btn btn-outline btn-sm" onclick="document.getElementById('note-sec').hidden=!document.getElementById('note-sec').hidden">&#128221; Add Note</button>
+      </div>
+      <div id="note-sec" hidden style="margin-top:20px">
+        <div class="card card-body"><h3 style="font-size:16px;margin-bottom:12px">Add a Note</h3>
+        <textarea id="note-input" placeholder="Write your notes here..." style="margin-bottom:12px;min-height:100px"></textarea>
+        <button class="btn btn-primary btn-sm" onclick="App.saveNote(document.getElementById('note-input').value,${l.id},${this.state.currentCourse.id})">Save Note</button></div>
+      </div>`;
+    return h;
+  },
+
+  // QUIZ
+  renderQuizPage(){
+    const q=this.state.currentQuiz; if(!q) return '';
+    if(this.state.quizResults) return this.renderQuizResults();
+    const questions = this.getQuestions(q.id);
+    return `<div class="container" style="max-width:800px">
+      <div class="quiz-header"><h2>${this.esc(q.title)}</h2>
+        <p>${this.esc(q.description)} | Passing: ${q.passing_score}% | Attempt ${(q._attempts||0)+1}/${q.max_attempts||'&#8734;'}</p>
+        ${q.time_limit?`<div style="margin-top:12px;font-size:18px;font-weight:700">&#9200; <span id="quiz-timer">${q.time_limit}:00</span></div>`:''}
+      </div>
+      <div class="quiz-body">
+        ${questions.map((question,i)=>{
+          const answers = this.getAnswers(question.id);
+          const multi = question.type==='multi_select';
+          return `<div style="margin-bottom:32px">
+            <div class="q-text"><span class="q-number">${i+1}</span><span style="margin-top:4px">${this.esc(question.text)}</span></div>
+            ${answers.map(a=>{
+              const sel=(this.state.quizAnswers[question.id]||[]).includes(a.id);
+              return `<div class="answer-option ${sel?'selected':''}" onclick="App.selectAnswer(${question.id},${a.id},${multi})">
+                ${multi?`<span class="answer-checkbox">${sel?'&#10003;':''}</span>`:`<span class="answer-radio"></span>`}
+                <span>${this.esc(a.text)}</span></div>`;
+            }).join('')}
+          </div>`;
+        }).join('')}
+        <div style="display:flex;gap:12px;justify-content:space-between;margin-top:16px">
+          <button class="btn btn-outline" onclick="App.state.currentLesson=null;App.go('course-view')">Cancel</button>
+          <button class="btn btn-primary btn-lg" onclick="App.submitQuiz()">Submit Answers</button>
+        </div>
+      </div></div>`;
+  },
+
+  renderQuizResults(){
+    const q=this.state.currentQuiz, r=this.state.quizResults;
+    const questions = this.getQuestions(q.id);
+    return `<div class="container" style="max-width:800px">
+      <div class="card" style="text-align:center;padding:48px 32px">
+        <div class="results-score ${r.passed?'passed':'failed'}">${r.score}%</div>
+        <h2 style="font-size:28px;margin-bottom:8px">${r.passed?'Congratulations!':'Keep Trying!'}</h2>
+        <p style="color:var(--text-mid);margin-bottom:8px">You scored ${r.earnedPts} out of ${r.totalPts} points (${r.score}%)</p>
+        <p style="color:var(--text-mid);margin-bottom:24px">Passing score: ${r.passing_score}%</p>
+        ${r.passed&&q.quiz_type==='final_exam'?`<div style="background:rgba(34,197,94,0.1);border-radius:var(--radius);padding:20px;margin-bottom:24px">
+          <p style="font-size:24px;margin-bottom:8px">&#127942;</p><p style="font-weight:600;color:var(--success)">You earned your Kru Academy Certificate!</p>
+          <button class="btn btn-success" style="margin-top:12px" onclick="App.go('certificates')">View Certificate</button></div>`:''}
+      </div>
+      <h3 style="margin:24px 0 16px">Review Your Answers</h3>
+      ${r.results.map((res,i)=>{
+        const question = questions[i];
+        const answers = this.getAnswers(question.id);
+        return `<div class="card card-body" style="margin-bottom:12px">
+          <div class="q-text"><span class="q-number" style="background:${res.correct?'var(--success)':'var(--danger)'}">${res.correct?'&#10003;':'&#10007;'}</span>
+          <span style="margin-top:4px">${this.esc(question.text)}</span></div>
+          ${answers.map(a=>{
+            const isCor=res.correctAnswers.includes(a.id), wasSel=res.userAnswers.includes(a.id);
+            return `<div class="answer-option ${isCor?'correct':wasSel?'incorrect':''}" style="cursor:default">${isCor?'&#10003;':wasSel?'&#10007;':'&nbsp;&nbsp;'}&nbsp;&nbsp;${this.esc(a.text)}</div>`;
+          }).join('')}
+          ${res.explanation?`<div class="explanation">${this.esc(res.explanation)}</div>`:''}
+        </div>`;
+      }).join('')}
+      <div style="margin-top:24px;display:flex;gap:12px">
+        <button class="btn btn-primary" onclick="App.state.currentLesson=null;App.go('course-view')">Back to Course</button>
+        ${!r.passed?`<button class="btn btn-outline" onclick="App.startQuiz(${q.id})">Retry Quiz</button>`:''}
+      </div></div>`;
+  },
+
+  // AUTH
+  renderLogin(){
+    return `<div class="auth-page"><div class="auth-card">
+      <h2>Welcome Back</h2><p class="auth-sub">Log in to continue your learning journey</p>
+      <form onsubmit="event.preventDefault();App.login(this.email.value,this.pw.value)">
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@example.com" required></div>
+        <div class="form-group"><label>Password</label><input type="password" name="pw" placeholder="Enter your password" required></div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Log In</button>
+      </form>
+      <p class="auth-divider">Don't have an account?</p>
+      <button class="btn btn-outline" style="width:100%" onclick="App.go('register')">Create Account</button>
+      <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--text-light)">Demo admin: admin@kruacademy.ca / admin123</p>
+    </div></div>`;
+  },
+
+  renderRegister(){
+    return `<div class="auth-page"><div class="auth-card">
+      <h2>Join Kru Academy</h2><p class="auth-sub">Create your free account and start learning</p>
+      <form onsubmit="event.preventDefault();App.register({first_name:this.fn.value,last_name:this.ln.value,email:this.em.value,phone:this.ph.value,password:this.pw.value})">
+        <div class="form-row"><div class="form-group"><label>First Name</label><input name="fn" required placeholder="John"></div>
+        <div class="form-group"><label>Last Name</label><input name="ln" required placeholder="Doe"></div></div>
+        <div class="form-group"><label>Email</label><input type="email" name="em" required placeholder="you@example.com"></div>
+        <div class="form-group"><label>Phone (optional)</label><input type="tel" name="ph" placeholder="+1 (555) 000-0000"></div>
+        <div class="form-group"><label>Password</label><input type="password" name="pw" required placeholder="Min 6 characters" minlength="6"></div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Create Account</button>
+      </form>
+      <p class="auth-divider">Already have an account?</p>
+      <button class="btn btn-outline" style="width:100%" onclick="App.go('login')">Log In</button>
+    </div></div>`;
+  },
+
+  // DASHBOARD
+  renderDashboard(){
+    const u=this.state.user; if(!u) return '';
+    const enrolled = DB.filter('enrollments', e=>e.user_id===u.id);
+    const certs = this.getCertificates();
+    return `<div class="container">
+      <div style="margin-bottom:32px"><h1 style="font-size:28px">Welcome back, ${this.esc(u.first_name)}!</h1><p style="color:var(--text-mid)">Continue your learning journey</p></div>
+      <div class="grid-3" style="margin-bottom:32px">
+        <div class="stat-card"><div style="font-size:32px;margin-bottom:8px">&#128218;</div><div class="stat-value">${enrolled.length}</div><div class="stat-label">Enrolled Courses</div></div>
+        <div class="stat-card"><div style="font-size:32px;margin-bottom:8px">&#127942;</div><div class="stat-value">${certs.length}</div><div class="stat-label">Certificates Earned</div></div>
+        <div class="stat-card"><div style="font-size:32px;margin-bottom:8px">&#128276;</div><div class="stat-value">${this.unreadCount()}</div><div class="stat-label">Unread Notifications</div></div>
+      </div>
+      <h2 style="font-size:22px;margin-bottom:16px">My Courses</h2>
+      ${enrolled.length?`<div class="grid-3">${enrolled.map(e=>{
+        const c=this.getCourse(e.course_id); if(!c) return '';
+        const p=this.getProgress(c.id);
+        return `<div class="card" style="cursor:pointer" onclick="App.state.currentCourse=App.getCourse(${c.id});App.state.currentLesson=null;App.go('course-view')">
+          <div class="card-body"><h3 style="font-size:16px;margin-bottom:8px">${this.esc(c.title)}</h3>
+          <div class="progress-text">${p.progress}% complete</div>
+          <div class="progress-bar"><div class="fill" style="width:${p.progress}%"></div></div></div></div>`;
+      }).join('')}</div>`:`<div class="empty-state"><h3>No courses yet</h3><p>Enroll in a course to get started!</p>
+        <button class="btn btn-primary" style="margin-top:16px" onclick="App.go('courses')">Browse Courses</button></div>`}
+    </div>`;
+  },
+
+  // MY COURSES
+  renderMyCourses(){
+    const enrolled = DB.filter('enrollments', e=>e.user_id===this.state.user?.id);
+    return `<div class="container"><h1 style="font-size:28px;margin-bottom:24px">My Courses</h1>
+      ${enrolled.length?`<div class="grid-3">${enrolled.map(e=>{
+        const c=this.getCourse(e.course_id); if(!c) return '';
+        const p=this.getProgress(c.id);
+        return `<div class="card" style="cursor:pointer" onclick="App.state.currentCourse=App.getCourse(${c.id});App.state.currentLesson=null;App.go('course-view')">
+          <div class="course-thumb" style="height:120px">&#127891;</div>
+          <div class="card-body"><h3 style="font-size:16px;margin-bottom:8px">${this.esc(c.title)}</h3>
+          <div class="progress-text">${p.progress}% complete</div>
+          <div class="progress-bar"><div class="fill" style="width:${p.progress}%"></div></div>
+          <div style="font-size:13px;color:var(--text-mid);margin-top:8px">${p.completedLessons}/${p.totalLessons} lessons</div>
+          ${e.completed_at?'<span style="color:var(--success);font-size:13px;font-weight:600">&#10003; Completed</span>':''}</div></div>`;
+      }).join('')}</div>`:`<div class="empty-state"><h3>No courses yet</h3>
+        <button class="btn btn-primary" style="margin-top:16px" onclick="App.go('courses')">Browse Courses</button></div>`}
+    </div>`;
+  },
+
+  // CERTIFICATES
+  renderCertificatesPage(){
+    const certs=this.getCertificates();
+    return `<div class="container"><h1 style="font-size:28px;margin-bottom:24px">My Certificates</h1>
+      ${certs.length?certs.map(cert=>{
+        const c=this.getCourse(cert.course_id);
+        return `<div class="cert-card" style="margin-bottom:32px">
+          <div style="font-size:18px;color:var(--primary);font-weight:700;margin-bottom:8px">Kru Academy</div>
+          <h2 style="font-size:32px;color:var(--primary-dark);margin-bottom:16px">Certificate of Completion</h2>
+          <p style="color:var(--text-mid)">This certifies that</p>
+          <div style="font-size:28px;color:var(--primary);font-weight:700;margin:16px 0">${this.esc(this.state.user.first_name)} ${this.esc(this.state.user.last_name)}</div>
+          <p style="color:var(--text-mid)">has successfully completed</p>
+          <div style="font-size:20px;color:var(--primary-dark);font-weight:600;margin:12px 0">${this.esc(c?.title||'')}</div>
+          <p style="color:var(--text-light);font-size:13px;margin-top:16px">Certificate #${cert.certificate_number} | Issued: ${new Date(cert.issued_at).toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'})}</p>
+          <button class="btn btn-primary" style="margin-top:20px" onclick="App.downloadCert(${cert.id})">&#128196; Download Certificate</button>
+        </div>`;
+      }).join(''):`<div class="empty-state"><h3>No certificates yet</h3><p>Complete a course and pass the final exam to earn your Kru Academy Certificate!</p></div>`}
+    </div>`;
+  },
+
+  downloadCert(certId){
+    const cert = DB.find('certificates', c=>c.id===certId);
+    const course = this.getCourse(cert.course_id);
+    const u = this.state.user;
+    // Generate printable certificate HTML and open in new window
+    const w = window.open('','_blank');
+    w.document.write(`<!DOCTYPE html><html><head><title>Kru Academy Certificate</title>
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+      <style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Jost',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f0f0f0;padding:20px}
+      .cert{width:900px;height:636px;background:#fff;border:4px solid #3C595D;border-radius:12px;padding:60px;text-align:center;position:relative;box-shadow:0 4px 24px rgba(0,0,0,.12)}
+      .cert::before{content:'';position:absolute;inset:12px;border:1px solid #64A5AD;border-radius:8px;pointer-events:none}
+      .logo{font-size:20px;color:#3C595D;font-weight:700;margin-bottom:12px;letter-spacing:1px}
+      h1{font-size:40px;color:#233538;margin-bottom:20px}
+      .sub{color:#6A8A8F;font-size:16px;margin-bottom:8px}
+      .name{font-size:36px;color:#3C595D;font-weight:700;margin:20px 0}
+      .course{font-size:24px;color:#233538;font-weight:600;margin:16px 0}
+      .meta{color:#C8C8C8;font-size:12px;margin-top:24px}
+      .line{width:200px;height:1px;background:#3C595D;margin:32px auto 8px}
+      .sig{font-size:12px;color:#233538}
+      .foot{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:10px;color:#C8C8C8}
+      @media print{body{background:#fff;padding:0}.cert{box-shadow:none;border:4px solid #3C595D}}
+      </style></head><body>
+      <div class="cert">
+        <div class="logo">Kru Academy</div>
+        <h1>Certificate of Completion</h1>
+        <div class="sub">This is to certify that</div>
+        <div class="name">${u.first_name} ${u.last_name}</div>
+        <div class="sub">has successfully completed the course</div>
+        <div class="course">${course?.title||''}</div>
+        <div class="line"></div>
+        <div class="sig">Kru Academy Director</div>
+        <div class="meta">Issued: ${new Date(cert.issued_at).toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'})} | Certificate #${cert.certificate_number}</div>
+        <div class="foot">Powered by Kru | mykru.ca</div>
+      </div>
+      <script>setTimeout(()=>window.print(),500)<\/script></body></html>`);
+    w.document.close();
+  },
+
+  // NOTES
+  renderNotesPage(){
+    const notes=this.getNotes();
+    return `<div class="container" style="max-width:800px"><h1 style="font-size:28px;margin-bottom:24px">My Notes</h1>
+      ${notes.length?notes.map(n=>{
+        const c=this.getCourse(n.course_id);
+        const l=DB.find('lessons', x=>x.id===n.lesson_id);
+        return `<div class="note-card">
+          <div style="font-size:12px;color:var(--text-light);margin-bottom:8px">${this.esc(c?.title||'')} ${l?' &rsaquo; '+this.esc(l.title):''} | ${new Date(n.created_at).toLocaleDateString()}</div>
+          <p style="font-size:15px;white-space:pre-wrap">${this.esc(n.content)}</p>
+          <button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:12px;padding:4px 12px" onclick="App.deleteNote(${n.id})">Delete</button>
+        </div>`;
+      }).join(''):`<div class="empty-state"><h3>No notes yet</h3><p>Add notes while watching lessons to keep track of key points.</p></div>`}
+    </div>`;
+  },
+
+  // PROFILE
+  renderProfile(){
+    const u=this.state.user; if(!u) return '';
+    return `<div class="container" style="max-width:640px"><h1 style="font-size:28px;margin-bottom:24px">Profile Settings</h1>
+      <div class="card card-body">
+        <form onsubmit="event.preventDefault();App.updateProfile({first_name:this.fn.value,last_name:this.ln.value,phone:this.ph.value,email_notif:this.en.checked,sms_notif:this.sn.checked,push_notif:this.pn.checked})">
+          <div class="form-row"><div class="form-group"><label>First Name</label><input name="fn" value="${this.esc(u.first_name)}" required></div>
+          <div class="form-group"><label>Last Name</label><input name="ln" value="${this.esc(u.last_name)}" required></div></div>
+          <div class="form-group"><label>Email</label><input value="${this.esc(u.email)}" disabled style="opacity:.6"></div>
+          <div class="form-group"><label>Phone</label><input name="ph" value="${this.esc(u.phone||'')}"></div>
+          <h3 style="font-size:18px;margin:24px 0 16px">Notification Preferences</h3>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <label style="display:flex;align-items:center;justify-content:space-between"><span>&#128231; Email Notifications</span><label class="toggle"><input type="checkbox" name="en" ${u.email_notif?'checked':''}><span class="toggle-slider"></span></label></label>
+            <label style="display:flex;align-items:center;justify-content:space-between"><span>&#128241; SMS Notifications</span><label class="toggle"><input type="checkbox" name="sn" ${u.sms_notif?'checked':''}><span class="toggle-slider"></span></label></label>
+            <label style="display:flex;align-items:center;justify-content:space-between"><span>&#128276; Push Notifications</span><label class="toggle"><input type="checkbox" name="pn" ${u.push_notif?'checked':''}><span class="toggle-slider"></span></label></label>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top:24px;width:100%">Save Changes</button>
+        </form>
+      </div></div>`;
+  },
+
+  // PAYMENT
+  renderPayment(){
+    const c=this.state.paymentCourse; if(!c) return '';
+    return `<div class="container" style="max-width:560px"><h1 style="font-size:28px;margin-bottom:24px">Complete Enrollment</h1>
+      <div class="card card-body">
+        <div class="payment-summary">
+          <p style="font-size:14px;color:var(--text-mid);margin-bottom:4px">Course</p>
+          <p style="font-weight:600;font-size:17px;margin-bottom:12px">${this.esc(c.title)}</p>
+          <p style="font-size:14px;color:var(--text-mid);margin-bottom:4px">Total</p>
+          <div class="payment-total">$${c.price.toFixed(2)} CAD</div>
+        </div>
+        <p style="font-size:14px;color:var(--text-mid);margin-bottom:20px">In production, this connects to Stripe/PayPal. Click below to simulate payment.</p>
+        <button class="btn btn-primary btn-lg" style="width:100%" onclick="App.pay(${c.id})">&#128179; Pay $${c.price.toFixed(2)} CAD</button>
+        <button class="btn btn-outline" style="width:100%;margin-top:12px" onclick="App.state.currentCourse=App.getCourse(${c.id});App.go('course-detail')">Cancel</button>
+      </div></div>`;
+  },
+
+  // NOTIFICATIONS PANEL
+  renderNotifPanel(){
+    const notifs = this.getNotifications();
+    return `<div class="notif-panel ${this.state.showNotifPanel?'show':''}">
+      <div class="notif-panel-header"><h3 style="font-size:18px">Notifications</h3>
+        <button class="btn btn-sm btn-outline" onclick="App.markAllRead()">Mark all read</button></div>
+      ${notifs.length?notifs.map(n=>`<div class="notif-item ${n.is_read?'':'unread'}" onclick="App.markRead(${n.id})">
+        <div class="notif-title">${n.type==='achievement'?'&#127942; ':n.type==='reminder'?'&#128276; ':''}${this.esc(n.title)}</div>
+        <div class="notif-msg">${this.esc(n.message)}</div>
+        <div class="notif-time">${this.timeAgo(n.created_at)}</div>
+      </div>`).join(''):`<div style="padding:40px;text-align:center;color:var(--text-light)">No notifications</div>`}
+    </div>`;
+  },
+
+  // ADMIN
+  renderAdmin(){
+    if(!this.state.user||this.state.user.role!=='admin') return '<div class="container"><h1>Access Denied</h1></div>';
+    const users=DB.getAll('users'), courses=DB.getAll('courses'), enrollments=DB.getAll('enrollments'), certs=DB.getAll('certificates');
+    const revenue = enrollments.filter(e=>e.payment_status==='paid').reduce((s,e)=>s+e.payment_amount,0);
+    const week=Date.now()-7*86400000;
+    const inactive = users.filter(u=>u.role==='student'&&new Date(u.last_active)<week);
+    const tab = this.state.adminTab;
+
+    return `<div class="container"><h1 style="font-size:28px;margin-bottom:24px">Admin Dashboard</h1>
+      <div class="grid-4" style="margin-bottom:32px">
+        <div class="stat-card"><div style="font-size:28px;margin-bottom:8px">&#128101;</div><div class="stat-value">${users.length}</div><div class="stat-label">Total Users</div></div>
+        <div class="stat-card"><div style="font-size:28px;margin-bottom:8px">&#128218;</div><div class="stat-value">${courses.length}</div><div class="stat-label">Courses</div></div>
+        <div class="stat-card"><div style="font-size:28px;margin-bottom:8px">&#127891;</div><div class="stat-value">${enrollments.length}</div><div class="stat-label">Enrollments</div></div>
+        <div class="stat-card"><div style="font-size:28px;margin-bottom:8px">&#128176;</div><div class="stat-value">$${revenue.toFixed(2)}</div><div class="stat-label">Revenue</div></div>
+      </div>
+      <div class="tabs">
+        ${['courses','enrollments','inactive','create'].map(t=>`<button class="tab ${tab===t?'active':''}" onclick="App.state.adminTab='${t}';App.render()">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}
+      </div>
+
+      ${tab==='courses'?`<div class="table-wrap"><table><thead><tr><th>ID</th><th>Course</th><th>Price</th><th>Students</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+        ${courses.map(c=>`<tr><td>${c.id}</td><td><strong>${this.esc(c.title)}</strong></td><td>${c.is_free?'Free':'$'+c.price.toFixed(2)}</td>
+          <td>${DB.count('enrollments',e=>e.course_id===c.id)}</td>
+          <td style="color:${c.is_published?'var(--success)':'var(--warning)'}">${c.is_published?'Published':'Draft'}</td>
+          <td><button class="btn btn-sm btn-primary" onclick="App.adminTogglePublish(${c.id})">${c.is_published?'Unpublish':'Publish'}</button></td></tr>`).join('')}
+      </tbody></table></div>`:''}
+
+      ${tab==='enrollments'?`<div class="table-wrap"><table><thead><tr><th>Student</th><th>Course</th><th>Status</th><th>Date</th></tr></thead><tbody>
+        ${enrollments.sort((a,b)=>new Date(b.enrolled_at)-new Date(a.enrolled_at)).slice(0,20).map(e=>{
+          const u=DB.find('users',x=>x.id===e.user_id), c=this.getCourse(e.course_id);
+          return `<tr><td>${this.esc(u?.first_name||'')} ${this.esc(u?.last_name||'')}<br><small style="color:var(--text-mid)">${this.esc(u?.email||'')}</small></td>
+            <td>${this.esc(c?.title||'')}</td>
+            <td style="color:${e.payment_status==='paid'||e.payment_status==='free'?'var(--success)':'var(--warning)'}">${e.payment_status}</td>
+            <td>${new Date(e.enrolled_at).toLocaleDateString()}</td></tr>`;
+        }).join('')}
+      </tbody></table></div>`:''}
+
+      ${tab==='inactive'?`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <h3>Inactive Users (7+ days)</h3><button class="btn btn-primary btn-sm" onclick="App.adminSendBulk()">Send Bulk Reminders</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Last Active</th><th>Actions</th></tr></thead><tbody>
+        ${inactive.map(u=>`<tr><td>${this.esc(u.first_name)} ${this.esc(u.last_name)}</td><td>${this.esc(u.email)}</td><td>${this.timeAgo(u.last_active)}</td>
+          <td><button class="btn btn-sm btn-outline" onclick="App.adminSendReminder(${u.id})">Send Reminder</button></td></tr>`).join('')}
+        ${!inactive.length?'<tr><td colspan="4" style="text-align:center;color:var(--text-light)">No inactive users</td></tr>':''}
+        </tbody></table></div>`:''}
+
+      ${tab==='create'?`<div class="grid-2">
+        <div class="card card-body">
+          <h3 style="font-size:18px;margin-bottom:16px">Create Course</h3>
+          <form onsubmit="event.preventDefault();App.adminCreateCourse({title:this.t.value,description:this.d.value,category:this.cat.value,difficulty:this.diff.value,is_free:this.free.checked,price:parseFloat(this.pr.value)||0});this.reset()">
+            <div class="form-group"><label>Title</label><input name="t" required></div>
+            <div class="form-group"><label>Description</label><textarea name="d"></textarea></div>
+            <div class="form-row"><div class="form-group"><label>Category</label><select name="cat"><option>Fundamentals</option><option>Maintenance</option><option>Legal</option><option>Platform</option><option>Finance</option></select></div>
+            <div class="form-group"><label>Difficulty</label><select name="diff"><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></div></div>
+            <div class="form-row"><div class="form-group"><label><input type="checkbox" name="free" checked style="width:auto"> Free</label></div>
+            <div class="form-group"><label>Price ($)</label><input type="number" name="pr" step="0.01" value="0"></div></div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Create Course</button>
+          </form>
+        </div>
+        <div class="card card-body">
+          <h3 style="font-size:18px;margin-bottom:16px">Add Module</h3>
+          <form onsubmit="event.preventDefault();App.adminCreateModule({course_id:+this.cid.value,title:this.t.value,description:this.d.value,sort_order:+this.so.value||0});this.reset()">
+            <div class="form-group"><label>Course ID</label><input name="cid" type="number" required></div>
+            <div class="form-group"><label>Title</label><input name="t" required></div>
+            <div class="form-group"><label>Description</label><textarea name="d"></textarea></div>
+            <div class="form-group"><label>Sort Order</label><input name="so" type="number" value="0"></div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Add Module</button>
+          </form>
+          <hr style="margin:24px 0;border:none;border-top:1px solid var(--border)">
+          <h3 style="font-size:18px;margin-bottom:16px">Add Lesson</h3>
+          <form onsubmit="event.preventDefault();App.adminCreateLesson({module_id:+this.mid.value,title:this.t.value,description:this.d.value,content_type:this.ct.value,youtube_url:this.yt.value,social_url:this.su.value,text_content:this.tx.value,duration:+this.dur.value||10,sort_order:+this.so.value||0,is_free_preview:this.fp.checked});this.reset()">
+            <div class="form-group"><label>Module ID</label><input name="mid" type="number" required></div>
+            <div class="form-group"><label>Title</label><input name="t" required></div>
+            <div class="form-group"><label>Description</label><input name="d"></div>
+            <div class="form-group"><label>Content Type</label><select name="ct"><option value="youtube">YouTube</option><option value="video">Video URL</option><option value="social">Social Media</option><option value="text">Text</option></select></div>
+            <div class="form-group"><label>YouTube URL</label><input name="yt" placeholder="https://youtube.com/watch?v=..."></div>
+            <div class="form-group"><label>Social URL</label><input name="su"></div>
+            <div class="form-group"><label>Text Content (HTML)</label><textarea name="tx"></textarea></div>
+            <div class="form-row"><div class="form-group"><label>Duration (min)</label><input name="dur" type="number" value="10"></div>
+            <div class="form-group"><label><input type="checkbox" name="fp" style="width:auto"> Free Preview</label></div></div>
+            <div class="form-group"><label>Sort Order</label><input name="so" type="number" value="0"></div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Add Lesson</button>
+          </form>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:24px">
+        <div class="card card-body">
+          <h3 style="font-size:18px;margin-bottom:16px">Create Quiz / Final Exam</h3>
+          <form onsubmit="event.preventDefault();App.adminCreateQuiz({course_id:+this.cid.value,title:this.t.value,description:this.d.value,quiz_type:this.qt.value,passing_score:+this.ps.value||70,time_limit:+this.tl.value||0,max_attempts:+this.ma.value||3});this.reset()">
+            <div class="form-group"><label>Course ID</label><input name="cid" type="number" required></div>
+            <div class="form-group"><label>Title</label><input name="t" required></div>
+            <div class="form-group"><label>Description</label><textarea name="d"></textarea></div>
+            <div class="form-row"><div class="form-group"><label>Type</label><select name="qt"><option value="lesson">Lesson Quiz</option><option value="final_exam">Final Exam</option></select></div>
+            <div class="form-group"><label>Passing Score (%)</label><input name="ps" type="number" value="70"></div></div>
+            <div class="form-row"><div class="form-group"><label>Time Limit (min, 0=none)</label><input name="tl" type="number" value="0"></div>
+            <div class="form-group"><label>Max Attempts</label><input name="ma" type="number" value="3"></div></div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Create Quiz</button>
+          </form>
+        </div>
+        <div class="card card-body">
+          <h3 style="font-size:18px;margin-bottom:16px">Add Question</h3>
+          <form onsubmit="event.preventDefault();App.adminCreateQuestion({quiz_id:+this.qid.value,text:this.qt2.value,type:this.qtype.value,explanation:this.exp.value,points:+this.pts.value||1,sort_order:0,answers:[{text:this.a1.value,correct:this.c1.checked},{text:this.a2.value,correct:this.c2.checked},{text:this.a3.value,correct:this.c3.checked},{text:this.a4.value,correct:this.c4.checked}].filter(a=>a.text)});this.reset()">
+            <div class="form-group"><label>Quiz ID</label><input name="qid" type="number" required></div>
+            <div class="form-group"><label>Question</label><textarea name="qt2" required></textarea></div>
+            <div class="form-row"><div class="form-group"><label>Type</label><select name="qtype"><option value="multiple_choice">Multiple Choice</option><option value="true_false">True/False</option><option value="multi_select">Multi Select</option></select></div>
+            <div class="form-group"><label>Points</label><input name="pts" type="number" value="1"></div></div>
+            <div class="form-group"><label>Explanation</label><input name="exp"></div>
+            <label style="font-weight:600;font-size:14px;margin-bottom:8px;display:block">Answers (check correct)</label>
+            ${[1,2,3,4].map(i=>`<div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><input type="checkbox" name="c${i}" style="width:auto"><input name="a${i}" placeholder="Answer ${i}" style="flex:1"></div>`).join('')}
+            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:12px">Add Question</button>
+          </form>
+        </div>
+      </div>`:''}
+    </div>`;
+  },
+
+  // CHATBOT
+  renderChatbot(){
+    const step = this.state.chatbotStep;
+    let body = '';
+
+    if(step===0){
+      body = `<div class="chatbot-step">
+        <div class="chatbot-q">Welcome! To help point you in the right direction, what best describes you?</div>
+        <div class="chatbot-option" onclick="App.chatbotSelect('aspiring')">
+          <span class="cb-icon">&#127793;</span>
+          <div><div class="cb-label">Aspiring Rental Property Owner</div>
+            <div class="cb-desc">I'm researching what it takes to buy and manage my first rental property.</div></div>
+        </div>
+        <div class="chatbot-option" onclick="App.chatbotSelect('self-manage-small')">
+          <span class="cb-icon">&#127968;</span>
+          <div><div class="cb-label">Self-Managing Owner (1-5 Units)</div>
+            <div class="cb-desc">I own a few properties and handle everything myself — tenants, repairs, the works.</div></div>
+        </div>
+        <div class="chatbot-option" onclick="App.chatbotSelect('self-manage-large')">
+          <span class="cb-icon">&#127959;</span>
+          <div><div class="cb-label">Multi-Property Owner (5-50 Units)</div>
+            <div class="cb-desc">I manage a growing portfolio and need better systems, tools, and knowledge.</div></div>
+        </div>
+        <div class="chatbot-option" onclick="App.chatbotSelect('professional')">
+          <span class="cb-icon">&#128188;</span>
+          <div><div class="cb-label">Professional Property Manager</div>
+            <div class="cb-desc">I manage properties on behalf of owners as my business or career.</div></div>
+        </div>
+      </div>`;
+    } else if(step===1){
+      const p = this.state.chatbotProfile;
+      const recs = this.getChatbotRecs(p);
+      const labels = { 'aspiring':'Aspiring Rental Property Owner', 'self-manage-small':'Self-Managing Owner (1-5 Units)', 'self-manage-large':'Multi-Property Owner (5-50 Units)', 'professional':'Professional Property Manager' };
+      const emojis = { 'aspiring':'&#127793;', 'self-manage-small':'&#127968;', 'self-manage-large':'&#127959;', 'professional':'&#128188;' };
+      body = `<div class="chatbot-step">
+        <div class="chatbot-result">
+          <div class="cb-emoji">${emojis[p]}</div>
+          <h3>${recs.heading}</h3>
+          <p>${recs.message}</p>
+        </div>
+        <div class="chatbot-recs">
+          ${recs.items.map(r=>`<div class="chatbot-rec" onclick="${r.action}">
+            <span class="rec-icon">${r.icon}</span>
+            <div><div class="rec-title">${r.title}</div></div>
+            <span class="rec-tag" style="background:${r.tagColor};color:#fff">${r.tag}</span>
+          </div>`).join('')}
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-outline btn-sm" onclick="App.state.chatbotStep=0;App.render()" style="flex:1">&#8592; Start Over</button>
+          <button class="btn btn-primary btn-sm" onclick="App.closeChatbot()" style="flex:1">Got it, thanks!</button>
+        </div>
+      </div>`;
+    }
+
+    return `<div class="chatbot-overlay" onclick="if(event.target===this)App.closeChatbot()">
+      <div class="chatbot">
+        <div class="chatbot-header">
+          <h3>&#128075; Hey there! I'm your Kru Academy Guide</h3>
+          <p>Let me help you find the right content for your journey.</p>
+          <button class="chatbot-close" onclick="App.closeChatbot()">&times;</button>
+        </div>
+        <div class="chatbot-body">${body}</div>
+      </div></div>`;
+  },
+
+  chatbotSelect(profile){
+    this.state.chatbotProfile = profile;
+    this.state.chatbotStep = 1;
+    localStorage.setItem('kru_chatbot_profile', profile);
+    this.render();
+  },
+
+  closeChatbot(){
+    this.state.showChatbot = false;
+    localStorage.setItem('kru_chatbot_seen', '1');
+    this.render();
+  },
+
+  getChatbotRecs(profile){
+    const courses = this.getCourses();
+    switch(profile){
+      case 'aspiring': return {
+        heading: 'Great starting point!',
+        message: 'As someone looking to get into rental property ownership, we built a complete guide just for you — with a learning roadmap, checklists, and free content.',
+        items: [
+          { icon:'&#128204;', title:'Become a PM — Full Starter Guide', tag:'START HERE', tagColor:'var(--primary)', action:"App.closeChatbot();App.go('get-started')" },
+          { icon:'&#127891;', title:'Property Management Fundamentals', tag:'FREE COURSE', tagColor:'var(--success)', action:"App.closeChatbot();App.state.currentCourse=App.getCourses().find(c=>c.title.includes('Fundamentals'));if(App.state.currentCourse)App.go('course-detail')" },
+          { icon:'&#128214;', title:'Setting Up Your First Rental Property', tag:'FREE GUIDE', tagColor:'var(--accent)', action:"App.closeChatbot();App.state.currentResource=DB.find('resources',r=>r.title.includes('First Rental'));if(App.state.currentResource)App.go('resource-detail')" },
+          { icon:'&#128221;', title:'5 Mistakes New Landlords Make', tag:'FREE VIDEO', tagColor:'var(--danger)', action:"App.closeChatbot();App.state.currentResource=DB.find('resources',r=>r.title.includes('Mistakes'));if(App.state.currentResource)App.go('resource-detail')" },
+        ]
+      };
+      case 'self-manage-small': return {
+        heading: 'Let\'s level up your game!',
+        message: 'Managing a few units yourself is rewarding but challenging. We have content to help you screen better tenants, handle maintenance efficiently, and stay legally compliant.',
+        items: [
+          { icon:'&#127891;', title:'Property Management Fundamentals', tag:'FREE COURSE', tagColor:'var(--success)', action:"App.closeChatbot();App.state.currentCourse=App.getCourses().find(c=>c.title.includes('Fundamentals'));if(App.state.currentCourse)App.go('course-detail')" },
+          { icon:'&#128221;', title:'How to Screen Tenants Like a Pro', tag:'FREE BLOG', tagColor:'var(--accent)', action:"App.closeChatbot();App.state.currentResource=DB.find('resources',r=>r.title.includes('Screen Tenants'));if(App.state.currentResource)App.go('resource-detail')" },
+          { icon:'&#9889;', title:'Explore Kru Maintenance Platform', tag:'SAVE TIME', tagColor:'var(--primary)', action:"window.open('https://mykru.ca','_blank')" },
+          { icon:'&#128218;', title:'Browse All Courses', tag:'LEARN MORE', tagColor:'var(--text-mid)', action:"App.closeChatbot();App.go('courses')" },
+        ]
+      };
+      case 'self-manage-large': return {
+        heading: 'Time to scale with systems!',
+        message: 'At 5-50 units, you need professional-grade tools and knowledge. Our advanced courses cover vendor management, maintenance budgeting, and scaling operations — plus Kru can automate your maintenance workflow.',
+        items: [
+          { icon:'&#127891;', title:'Advanced Maintenance Coordination', tag:'$49.99', tagColor:'var(--accent)', action:"App.closeChatbot();App.state.currentCourse=App.getCourses().find(c=>c.title.includes('Advanced'));if(App.state.currentCourse)App.go('course-detail')" },
+          { icon:'&#128221;', title:'The PM Playbook: 1 Unit to 50', tag:'FREE BLOG', tagColor:'var(--success)', action:"App.closeChatbot();App.state.currentResource=DB.find('resources',r=>r.title.includes('Playbook'));if(App.state.currentResource)App.go('resource-detail')" },
+          { icon:'&#9889;', title:'Kru: Save 10+ Hours/Week', tag:'PLATFORM', tagColor:'var(--primary)', action:"window.open('https://mykru.ca','_blank')" },
+          { icon:'&#9878;', title:'Legal Essentials for PMs', tag:'$79.99', tagColor:'var(--warning)', action:"App.closeChatbot();App.state.currentCourse=App.getCourses().find(c=>c.title.includes('Legal'));if(App.state.currentCourse)App.go('course-detail')" },
+        ]
+      };
+      case 'professional': return {
+        heading: 'Welcome, fellow PM!',
+        message: 'As a professional property manager, you need advanced legal knowledge, efficient vendor management, and the right technology stack. Here are our top recommendations for you.',
+        items: [
+          { icon:'&#9878;', title:'Legal Essentials for Property Managers', tag:'$79.99', tagColor:'var(--warning)', action:"App.closeChatbot();App.state.currentCourse=App.getCourses().find(c=>c.title.includes('Legal'));if(App.state.currentCourse)App.go('course-detail')" },
+          { icon:'&#127891;', title:'Advanced Maintenance Coordination', tag:'$49.99', tagColor:'var(--accent)', action:"App.closeChatbot();App.state.currentCourse=App.getCourses().find(c=>c.title.includes('Advanced'));if(App.state.currentCourse)App.go('course-detail')" },
+          { icon:'&#128221;', title:'PM Tech Stack 2025', tag:'FREE BLOG', tagColor:'var(--success)', action:"App.closeChatbot();App.state.currentResource=DB.find('resources',r=>r.title.includes('Tech Stack'));if(App.state.currentResource)App.go('resource-detail')" },
+          { icon:'&#9889;', title:'Kru Maintenance Platform', tag:'AUTOMATE', tagColor:'var(--primary)', action:"window.open('https://mykru.ca','_blank')" },
+        ]
+      };
+      default: return { heading:'Explore', message:'Browse our content.', items:[] };
+    }
+  },
+
+  showChatbotManual(){
+    this.state.showChatbot = true;
+    this.state.chatbotStep = 0;
+    this.render();
+  },
+
+  // FOOTER
+  renderFooter(){
+    return `<footer class="footer"><div class="footer-grid">
+      <div><h4 style="display:flex;align-items:center;gap:8px"><div style="width:30px;height:30px;background:var(--primary);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px">K</div> Kru Academy</h4>
+        <p style="margin-top:12px;opacity:.55">The property management learning platform powered by Kru. Build your skills, earn certifications, and advance your career.</p></div>
+      <div><h4>Learn</h4><ul class="footer-links"><li><a href="#" onclick="event.preventDefault();App.go('get-started')">Become a PM</a></li><li><a href="#" onclick="event.preventDefault();App.go('courses')">All Courses</a></li><li><a href="#" onclick="event.preventDefault();App.go('resources')">Free Resources</a></li><li><a href="#" onclick="event.preventDefault();App.go(App.state.user?'dashboard':'register')">Get Started</a></li><li><a href="#" onclick="event.preventDefault();App.go('certificates')">Certificates</a></li></ul></div>
+      <div><h4>Kru</h4><ul class="footer-links"><li><a href="https://mykru.ca" target="_blank">&#9889; Maintenance Platform</a></li><li><a href="https://mykru.ca" target="_blank">About Us</a></li><li><a href="https://mykru.ca" target="_blank">Contact</a></li><li><a href="#" onclick="event.preventDefault();App.showChatbotManual()">Find My Path</a></li></ul></div>
+      <div><h4>Connect</h4><ul class="footer-links"><li><a href="https://www.facebook.com/mykru" target="_blank">Facebook</a></li><li><a href="https://www.instagram.com/mykru.ca/" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/company/mykru" target="_blank">LinkedIn</a></li></ul></div>
+    </div><div class="footer-bottom">&copy; ${new Date().getFullYear()} Kru Academy. A Kru company. All rights reserved.</div></footer>`;
+  },
+
+  // Close menus on outside click
+  initClickHandler(){
+    document.addEventListener('click', e => {
+      if(this.state.showUserMenu && !e.target.closest('.user-avatar') && !e.target.closest('.user-dropdown')){
+        this.state.showUserMenu = false; this.render();
+      }
+      if(this.state.showNotifPanel && !e.target.closest('.notif-panel') && !e.target.closest('.notif-btn')){
+        this.state.showNotifPanel = false; this.render();
+      }
+    });
+  },
+
+  init(){
+    this.initClickHandler();
+    this.render();
+    // Show chatbot for first-time visitors after a short delay
+    if(!localStorage.getItem('kru_chatbot_seen')){
+      setTimeout(()=>{ this.state.showChatbot = true; this.render(); }, 1500);
+    }
+  }
+};
+
+App.init();
+</script>
+</body>
+</html>
