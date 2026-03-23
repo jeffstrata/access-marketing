@@ -1853,6 +1853,64 @@ img {
   pointer-events: none;
 }
 
+/* Jeff's Junk Removal — iframe-blocked site styled preview */
+.jjr-preview {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.jjr-preview-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  background: linear-gradient(135deg, #0f1a2e 0%, #0a1520 100%);
+}
+
+.jjr-preview-icon {
+  color: #f59e0b;
+  opacity: 0.9;
+}
+
+.jjr-preview-text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jjr-preview-text strong {
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.jjr-preview-text span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+}
+
+.jjr-preview-cta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f59e0b;
+  padding: 5px 14px;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 50px;
+  letter-spacing: 0.04em;
+}
+
+.website-preview-link:hover .jjr-preview-cta {
+  background: rgba(245, 158, 11, 0.12);
+}
+
 .coming-soon-badge {
   margin-left: auto;
   font-size: 0.6rem;
