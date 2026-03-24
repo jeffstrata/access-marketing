@@ -228,11 +228,15 @@ img {
 .nav-links a {
   font-size: 0.92rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
-.nav-links a:hover {
-  color: var(--text-primary);
+.nav-links a:not(.btn):hover {
+  color: var(--accent);
+}
+
+.nav-links .btn-primary {
+  color: #fff !important;
 }
 
 .mobile-toggle {
