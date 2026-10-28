@@ -16,6 +16,7 @@ const navLinks = document.getElementById('navLinks');
 mobileToggle.addEventListener('click', () => {
   mobileToggle.classList.toggle('active');
   navLinks.classList.toggle('open');
+  mobileToggle.setAttribute('aria-expanded', navLinks.classList.contains('open'));
 });
 
 // Close mobile menu when a link is clicked
@@ -23,6 +24,7 @@ navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     mobileToggle.classList.remove('active');
     navLinks.classList.remove('open');
+    mobileToggle.setAttribute('aria-expanded', 'false');
   });
 });
 
@@ -72,29 +74,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ===== CONTACT FORM =====
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', function (e) {
+if (contactForm) contactForm.addEventListener('submit', function (e) {
   e.preventDefault();
-
-  const btn = this.querySelector('button[type="submit"]');
-  const originalContent = btn.innerHTML;
-
-  // Show success state
-  btn.innerHTML = `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-      <polyline points="20 6 9 17 4 12"/>
-    </svg>
-    Message Sent!
-  `;
-  btn.style.background = 'linear-gradient(135deg, #10B981, #059669)';
-  btn.disabled = true;
-
-  // Reset form
-  setTimeout(() => {
-    this.reset();
-    btn.innerHTML = originalContent;
-    btn.style.background = '';
-    btn.disabled = false;
-  }, 3000);
+  const data = new FormData(this);
+  const subject = 'Access Marketing project enquiry: ' + data.get('service');
+  const body = ['Name: ' + data.get('name'), 'Email: ' + data.get('email'), 'Phone: ' + data.get('phone'), '', data.get('message')].join('\n');
+  window.location.href = 'mailto:jeffkiers@outlook.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 });
 
 // ===== ACTIVE NAV LINK HIGHLIGHTING =====
